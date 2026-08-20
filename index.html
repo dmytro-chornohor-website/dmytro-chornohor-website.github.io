@@ -1,0 +1,2300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
+<link rel="icon" type="image/png" href="images/avatar-nav.png">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div id="site-canvas-wrap">
+    <canvas id="site-canvas"></canvas>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-avatar"><img src="images/avatar-nav.png" alt="Avatar"></a>
+
+    <div class="nav-stats">
+      <div class="nav-stat">
+        <div class="nav-stat-icon"><img src="images/icons/stat-top5.svg" alt="" /></div>
+        <div class="nav-stat-text">
+          <span class="nav-stat-title">Top 5% Rated</span>
+          <span class="nav-stat-subtitle">World class specialist</span>
+        </div>
+      </div>
+
+      <div class="nav-stat">
+        <div class="nav-stat-icon"><img src="images/icons/stat-excellent.svg" alt="" /></div>
+        <div class="nav-stat-text">
+          <span class="nav-stat-title">5/5 Excellent!</span>
+          <span class="nav-stat-subtitle">Based on public reviews</span>
+        </div>
+      </div>
+
+      <div class="nav-stat">
+        <div class="nav-stat-icon"><img src="images/icons/stat-100.svg" alt="" /></div>
+        <div class="nav-stat-text">
+          <span class="nav-stat-title">100%</span>
+          <span class="nav-stat-subtitle">Job Success Score</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- ===== MENU OVERLAY ===== -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- ===== SIDE MENU ===== -->
+  <aside class="side-menu" id="sideMenu">
+    <img class="side-menu-bg" src="images/menu-bg.svg" alt="" />
+    <div class="side-menu-top">
+      <div class="nav-avatar"><img src="images/avatar-menu.png" alt="Avatar"></div>
+      <button class="side-menu-close" id="sideMenuClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round">
+          <line x1="5" y1="5" x2="19" y2="19"/>
+          <line x1="19" y1="5" x2="5" y2="19"/>
+        </svg>
+      </button>
+    </div>
+    <div class="side-menu-middle">
+      <nav class="side-menu-nav">
+        <a href="index.html" class="side-menu-item">
+          <span class="side-menu-item-icon">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M32 8C32 3.58172 28.4183 0 24 0C20.6887 0 17.8473 2.01192 16.6313 4.88001H15.3687C14.1527 2.01192 11.3113 0 7.99997 0C3.58171 0 0 3.58172 0 8C0 11.1551 1.82667 13.8832 4.47994 15.1855V16.8146C1.82667 18.1168 0 20.8449 0 24C0 28.4183 3.58171 32 7.99997 32C11.155 32 13.8831 30.1733 15.1854 27.52H16.8146C18.1168 30.1733 20.8449 32 24 32C28.4183 32 32 28.4183 32 24C32 20.8449 30.1733 18.1168 27.5201 16.8146V15.1855C30.1733 13.8832 32 11.1551 32 8ZM15.1855 20.48C14.4046 18.889 13.1111 17.5954 11.5201 16.8145V15.1854C12.9756 14.471 14.1821 13.3276 14.9749 11.9199H17.0252C17.8181 13.3275 19.0245 14.471 20.48 15.1854V16.8145C18.889 17.5954 17.5955 18.889 16.8146 20.48H15.1855Z"/>
+            </svg>
+          </span>
+          <span class="side-menu-item-text">Home</span>
+        </a>
+        <div class="side-menu-item-group">
+          <a href="#" class="side-menu-item">
+            <span class="side-menu-item-icon">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M28.6429 12.6428H25.2304L30.4181 8.29352L26.1042 3.14796L19.3573 8.80432V3.35725C19.3573 1.50313 17.8542 0 16.0001 0C14.1458 0 12.6428 1.50313 12.6428 3.35725V6.76973L8.29352 1.58198L3.14796 5.89576L8.80432 12.6427H3.35726C1.50303 12.6427 0 14.1458 0 16C0 17.8541 1.50314 19.3572 3.35726 19.3572H6.76973L1.58199 23.7065L5.89586 28.852L12.6428 23.1957V28.6427C12.6428 30.4969 14.1459 32 16.0001 32C17.8542 32 19.3573 30.4969 19.3573 28.6427V25.2303L23.7066 30.418L28.852 26.1042L23.1957 19.3573H28.6427C30.4969 19.3573 32 17.8542 32 16.0001C32.0001 14.1458 30.4971 12.6428 28.6429 12.6428Z"/>
+              </svg>
+            </span>
+            <span class="side-menu-item-text">Portfolio</span>
+            <span class="side-menu-chevron">
+              <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L8 8L15 1" stroke="#212B36" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+          <div class="side-menu-dropdown">
+            <div class="side-menu-dropdown-inner">
+              <div class="side-menu-dropdown-row">
+                <a href="web-app.html" class="side-menu-badge"><span>Web App</span></a>
+                <a href="landing-page.html" class="side-menu-badge"><span>Landing Page</span></a>
+                <a href="mobile-app.html" class="side-menu-badge"><span>Mobile App</span></a>
+                <a href="website.html" class="side-menu-badge"><span>Website</span></a>
+                <a href="https://www.figma.com/design/6QJQzQvDtjRAGOy8AcCjOW/Portfolio?node-id=50-1100&t=awxdWaJ8cZoBmZIZ-1" target="_blank" rel="noopener" class="side-menu-badge"><span>More Cases</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="contacts.html" class="side-menu-item">
+          <span class="side-menu-item-icon">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.2875 16C-21.4797 16 16 -21.4797 16 18.2875C16 -21.4797 53.4797 16 13.7125 16C53.4797 16 16 53.4797 16 13.7125C16 53.4797 -21.4797 16 18.2875 16Z"/>
+            </svg>
+          </span>
+          <span class="side-menu-item-text">Contacts</span>
+        </a>
+      </nav>
+    </div>
+    <div class="side-menu-bottom">
+      <div class="music-player-wrap">
+      <div class="music-player">
+        <audio id="musicAudio" preload="metadata"></audio>
+
+        <div class="music-player-top">
+          <span class="music-player-artist" id="musicArtist">MondaMusic</span>
+          <span class="music-player-title" id="musicTitle">Lofi Beats</span>
+        </div>
+
+        <div class="music-player-progress" id="musicProgress">
+          <div class="music-player-progress-track"></div>
+          <div class="music-player-progress-fill" id="musicProgressFill"></div>
+        </div>
+
+        <div class="music-player-bottom">
+          <span class="music-player-time" id="musicTimeCurrent">0:00</span>
+
+          <div class="music-player-controls">
+            <button class="music-player-btn music-player-btn--prev" id="musicPrevBtn" aria-label="Previous track">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.4" d="M29.3332 11.1204V20.8804C29.3332 22.8804 27.1598 24.1338 25.4265 23.1338L21.1998 20.6937L16.9732 18.2538L16.3198 17.8804V14.1204L16.9732 13.7471L21.1998 11.3071L25.4265 8.86709C27.1598 7.86709 29.3332 9.12042 29.3332 11.1204Z" fill="black" fill-opacity="0.48"/>
+<path d="M16.3199 11.1204V20.8804C16.3199 22.8804 14.1466 24.1338 12.4266 23.1338L8.18661 20.6937L3.95992 18.2538C2.23992 17.2538 2.23992 14.7471 3.95992 13.7471L8.18661 11.3071L12.4266 8.86709C14.1466 7.86709 16.3199 9.12042 16.3199 11.1204Z" fill="black" fill-opacity="0.48"/>
+</svg>
+            </button>
+
+            <button class="music-player-btn music-player-btn--play" id="musicPlayBtn" aria-label="Play">
+              <svg class="icon-play" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.4" d="M15.9998 29.3337C23.3636 29.3337 29.3332 23.3641 29.3332 16.0003C29.3332 8.63653 23.3636 2.66699 15.9998 2.66699C8.63604 2.66699 2.6665 8.63653 2.6665 16.0003C2.6665 23.3641 8.63604 29.3337 15.9998 29.3337Z" fill="black" fill-opacity="0.48"/>
+<path d="M12.1333 16V14.0267C12.1333 11.48 13.9333 10.4533 16.1333 11.72L17.84 12.7067L19.5466 13.6933C21.7466 14.96 21.7466 17.04 19.5466 18.3067L17.84 19.2933L16.1333 20.28C13.9333 21.5467 12.1333 20.5067 12.1333 17.9733V16Z" fill="black" fill-opacity="0.48"/>
+</svg>
+              <svg class="icon-pause" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+<path opacity="0.4" d="M15.9598 29.3337C23.3236 29.3337 29.2931 23.3641 29.2931 16.0003C29.2931 8.63653 23.3236 2.66699 15.9598 2.66699C8.596 2.66699 2.62646 8.63653 2.62646 16.0003C2.62646 23.3641 8.596 29.3337 15.9598 29.3337Z" fill="black" fill-opacity="0.48"/>
+<path d="M14.2932 20.0397V11.9597C14.2932 11.3197 14.0265 11.0664 13.3465 11.0664H11.6132C10.9332 11.0664 10.6665 11.3197 10.6665 11.9597V20.0397C10.6665 20.6797 10.9332 20.9331 11.6132 20.9331H13.3332C14.0265 20.9331 14.2932 20.6797 14.2932 20.0397Z" fill="black" fill-opacity="0.48"/>
+<path d="M21.3335 20.0397V11.9597C21.3335 11.3197 21.0669 11.0664 20.3869 11.0664H18.6669C17.9869 11.0664 17.7202 11.3197 17.7202 11.9597V20.0397C17.7202 20.6797 17.9869 20.9331 18.6669 20.9331H20.3869C21.0669 20.9331 21.3335 20.6797 21.3335 20.0397Z" fill="black" fill-opacity="0.48"/>
+</svg>
+            </button>
+
+            <button class="music-player-btn music-player-btn--next" id="musicNextBtn" aria-label="Next track">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.4" d="M2.6665 11.1204V20.8804C2.6665 22.8804 4.83983 24.1338 6.57316 23.1338L10.7998 20.6937L15.0265 18.2538L15.6799 17.8804V14.1204L15.0265 13.7471L10.7998 11.3071L6.57316 8.86709C4.83983 7.86709 2.6665 9.12042 2.6665 11.1204Z" fill="black" fill-opacity="0.48"/>
+<path d="M15.6797 11.1204V20.8804C15.6797 22.8804 17.853 24.1338 19.573 23.1338L23.813 20.6937L28.0397 18.2538C29.7597 17.2538 29.7597 14.7471 28.0397 13.7471L23.813 11.3071L19.573 8.86709C17.853 7.86709 15.6797 9.12042 15.6797 11.1204Z" fill="black" fill-opacity="0.48"/>
+</svg>
+            </button>
+          </div>
+
+          <span class="music-player-time" id="musicTimeRemaining">-0:00</span>
+        </div>
+      </div>
+      </div>
+
+      <div class="side-menu-footer">
+        <span class="side-menu-footer-credit">Design &amp; Develop by <a href="https://t.me/sublom" target="_blank" rel="noopener" class="side-menu-footer-name">Dmytro Chornohor</a></span>
+        <span class="side-menu-footer-year">&copy;2026</span>
+      </div>
+    </div>
+  </aside>
+
+  <div class="sticky-stack">
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-main">
+        <div class="hero-chip">
+          <span class="hero-chip-label">Hello, ambitious soul!</span>
+        </div>
+        <h1 class="hero-title" id="hero-title">I&rsquo;m glad we met.</h1>
+      </div>
+
+      <div class="hero-bottom-group">
+        <div class="hero-buttons">
+          <a href="https://www.upwork.com/freelancers/dmytrochornohor" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">Hire</a>
+          <a href="contacts.html" class="hero-btn hero-btn-secondary">Contacts</a>
+        </div>
+
+        <div class="hero-scroll">
+          <div class="hero-scroll-stack">
+            <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.5" d="M4.2775 5.0275C4.0875 5.0275 3.8975 4.9575 3.7475 4.8075L0.2175 1.2775C-0.0725 0.987499 -0.0725 0.5075 0.2175 0.2175C0.5075 -0.0725 0.9875 -0.0725 1.2775 0.2175L4.2775 3.2175L7.2775 0.2175C7.5675 -0.0725 8.0475 -0.0725 8.3375 0.2175C8.6275 0.5075 8.6275 0.987499 8.3375 1.2775L4.8075 4.8075C4.6575 4.9575 4.4675 5.0275 4.2775 5.0275Z" fill="white" fill-opacity="0.32"/>
+            </svg>
+            <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.5" d="M4.2775 5.0275C4.0875 5.0275 3.8975 4.9575 3.7475 4.8075L0.2175 1.2775C-0.0725 0.987499 -0.0725 0.5075 0.2175 0.2175C0.5075 -0.0725 0.9875 -0.0725 1.2775 0.2175L4.2775 3.2175L7.2775 0.2175C7.5675 -0.0725 8.0475 -0.0725 8.3375 0.2175C8.6275 0.5075 8.6275 0.987499 8.3375 1.2775L4.8075 4.8075C4.6575 4.9575 4.4675 5.0275 4.2775 5.0275Z" fill="white" fill-opacity="0.32"/>
+            </svg>
+            <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.5" d="M4.2775 5.0275C4.0875 5.0275 3.8975 4.9575 3.7475 4.8075L0.2175 1.2775C-0.0725 0.987499 -0.0725 0.5075 0.2175 0.2175C0.5075 -0.0725 0.9875 -0.0725 1.2775 0.2175L4.2775 3.2175L7.2775 0.2175C7.5675 -0.0725 8.0475 -0.0725 8.3375 0.2175C8.6275 0.5075 8.6275 0.987499 8.3375 1.2775L4.8075 4.8075C4.6575 4.9575 4.4675 5.0275 4.2775 5.0275Z" fill="white" fill-opacity="0.32"/>
+            </svg>
+          </div>
+          <span>Scroll down</span>
+          <div class="hero-scroll-stack">
+            <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.5" d="M4.2775 5.0275C4.0875 5.0275 3.8975 4.9575 3.7475 4.8075L0.2175 1.2775C-0.0725 0.987499 -0.0725 0.5075 0.2175 0.2175C0.5075 -0.0725 0.9875 -0.0725 1.2775 0.2175L4.2775 3.2175L7.2775 0.2175C7.5675 -0.0725 8.0475 -0.0725 8.3375 0.2175C8.6275 0.5075 8.6275 0.987499 8.3375 1.2775L4.8075 4.8075C4.6575 4.9575 4.4675 5.0275 4.2775 5.0275Z" fill="white" fill-opacity="0.32"/>
+            </svg>
+            <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.5" d="M4.2775 5.0275C4.0875 5.0275 3.8975 4.9575 3.7475 4.8075L0.2175 1.2775C-0.0725 0.987499 -0.0725 0.5075 0.2175 0.2175C0.5075 -0.0725 0.9875 -0.0725 1.2775 0.2175L4.2775 3.2175L7.2775 0.2175C7.5675 -0.0725 8.0475 -0.0725 8.3375 0.2175C8.6275 0.5075 8.6275 0.987499 8.3375 1.2775L4.8075 4.8075C4.6575 4.9575 4.4675 5.0275 4.2775 5.0275Z" fill="white" fill-opacity="0.32"/>
+            </svg>
+            <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.5" d="M4.2775 5.0275C4.0875 5.0275 3.8975 4.9575 3.7475 4.8075L0.2175 1.2775C-0.0725 0.987499 -0.0725 0.5075 0.2175 0.2175C0.5075 -0.0725 0.9875 -0.0725 1.2775 0.2175L4.2775 3.2175L7.2775 0.2175C7.5675 -0.0725 8.0475 -0.0725 8.3375 0.2175C8.6275 0.5075 8.6275 0.987499 8.3375 1.2775L4.8075 4.8075C4.6575 4.9575 4.4675 5.0275 4.2775 5.0275Z" fill="white" fill-opacity="0.32"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about-me">
+    <div class="about-card">
+
+      <!-- Фоновый узор (настоящий BG.svg из Figma) -->
+      <img class="about-bg-pattern" src="images/about-bg.svg" alt="" />
+
+      <!-- ЛЕВАЯ КОЛОНКА -->
+      <div class="about-left">
+        <div class="about-left-top">
+          <h2 class="about-title">About me.</h2>
+          <p class="about-text">Hi! I&rsquo;m Dmytro &mdash; a UX/UI Lead who loves solving complex problems through simple, thoughtful design. I enjoy building products, exploring new ideas, and making technology feel a little more human.</p>
+          <a href="files/Dmytro-Chornohor-CV.pdf" download="Dmytro-Chornohor-CV.pdf" class="about-cv-btn">Download CV</a>
+        </div>
+
+        <div class="about-socials">
+          <a href="https://www.linkedin.com/in/dmytro-chornohor/" target="_blank" rel="noopener" class="about-social-btn" aria-label="LinkedIn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_4761_38973)">
+<rect width="24" height="24" rx="5" fill="white"/>
+<path d="M22.2283 0H1.77167C1.30179 0 0.851161 0.186657 0.518909 0.518909C0.186657 0.851161 0 1.30179 0 1.77167V22.2283C0 22.6982 0.186657 23.1488 0.518909 23.4811C0.851161 23.8133 1.30179 24 1.77167 24H22.2283C22.6982 24 23.1488 23.8133 23.4811 23.4811C23.8133 23.1488 24 22.6982 24 22.2283V1.77167C24 1.30179 23.8133 0.851161 23.4811 0.518909C23.1488 0.186657 22.6982 0 22.2283 0ZM7.15333 20.445H3.545V8.98333H7.15333V20.445ZM5.34667 7.395C4.93736 7.3927 4.53792 7.2692 4.19873 7.04009C3.85955 6.81098 3.59584 6.48653 3.44088 6.10769C3.28591 5.72885 3.24665 5.31259 3.32803 4.91145C3.40941 4.51032 3.6078 4.14228 3.89816 3.85378C4.18851 3.56529 4.55782 3.36927 4.95947 3.29046C5.36112 3.21165 5.77711 3.25359 6.15495 3.41099C6.53279 3.56838 6.85554 3.83417 7.08247 4.17481C7.30939 4.51546 7.43032 4.91569 7.43 5.325C7.43386 5.59903 7.38251 5.87104 7.27901 6.1248C7.17551 6.37857 7.02198 6.6089 6.82757 6.80207C6.63316 6.99523 6.40185 7.14728 6.14742 7.24915C5.893 7.35102 5.62067 7.40062 5.34667 7.395ZM20.4533 20.455H16.8467V14.1933C16.8467 12.3467 16.0617 11.7767 15.0483 11.7767C13.9783 11.7767 12.9283 12.5833 12.9283 14.24V20.455H9.32V8.99167H12.79V10.58H12.8367C13.185 9.875 14.405 8.67 16.2667 8.67C18.28 8.67 20.455 9.865 20.455 13.365L20.4533 20.455Z" fill="#0A66C2"/>
+</g>
+<defs>
+<clipPath id="clip0_4761_38973">
+<rect width="24" height="24" rx="5" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+          </a>
+          <a href="https://www.upwork.com/freelancers/dmytrochornohor" target="_blank" rel="noopener" class="about-social-btn" aria-label="Upwork">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_4920_4938)">
+                <path d="M20.4 0H3.6C1.61177 0 0 1.61177 0 3.6V20.4C0 22.3882 1.61177 24 3.6 24H20.4C22.3882 24 24 22.3882 24 20.4V3.6C24 1.61177 22.3882 0 20.4 0Z" fill="#6FDA44"/>
+                <path d="M16.7438 13.9168C15.9469 13.9168 15.1969 13.5793 14.5219 13.0309L14.6859 12.2527L14.6906 12.2246C14.8406 11.3996 15.3047 10.0121 16.7438 10.0121C17.8219 10.0121 18.6984 10.8887 18.6984 11.9668C18.6984 13.0449 17.8219 13.9168 16.7438 13.9168ZM16.7438 8.03398C14.9063 8.03398 13.4859 9.22461 12.9047 11.1887C12.0234 9.86211 11.3531 8.27305 10.9641 6.93242H8.98594V12.0746C8.98594 13.0918 8.16094 13.9168 7.14375 13.9168C6.12656 13.9168 5.30156 13.0918 5.30156 12.0746V6.92773H3.32812V12.0699C3.32812 14.1746 5.03906 15.9043 7.14375 15.9043C9.24844 15.9043 10.9594 14.1746 10.9594 12.0699V11.2074C11.3438 12.009 11.8125 12.8199 12.3844 13.5324L11.175 19.223H13.1953L14.0719 15.098C14.8406 15.5902 15.7219 15.8996 16.7344 15.8996C18.9 15.8996 20.6625 14.1277 20.6625 11.9574C20.6672 9.79648 18.9094 8.03398 16.7438 8.03398Z" fill="white"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_4920_4938">
+                  <rect width="24" height="24" rx="5" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+          <a href="https://t.me/sublom" target="_blank" rel="noopener" class="about-social-btn" aria-label="Telegram">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_4761_38981)">
+<rect width="24" height="24" rx="5" fill="url(#paint0_linear_4761_38981)"/>
+<path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="url(#paint1_linear_4761_38981)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.43177 11.873C8.93001 10.3488 11.2627 9.34403 12.4299 8.85856C15.7624 7.47245 16.4549 7.23167 16.9062 7.22372C17.0055 7.22197 17.2275 7.24657 17.3712 7.36323C17.4926 7.46174 17.526 7.59481 17.542 7.68821C17.558 7.7816 17.5779 7.99436 17.5621 8.16061C17.3815 10.0581 16.6001 14.6628 16.2026 16.788C16.0343 17.6872 15.7031 17.9888 15.3825 18.0183C14.6856 18.0824 14.1564 17.5577 13.4815 17.1153C12.4253 16.423 11.8287 15.992 10.8035 15.3164C9.61872 14.5357 10.3868 14.1066 11.062 13.4053C11.2387 13.2217 14.3091 10.429 14.3685 10.1756C14.3759 10.144 14.3828 10.0258 14.3126 9.96348C14.2425 9.90111 14.1389 9.92244 14.0642 9.9394C13.9583 9.96344 12.271 11.0786 9.00252 13.285C8.52361 13.6138 8.08982 13.7741 7.70117 13.7657C7.2727 13.7564 6.44851 13.5234 5.83582 13.3242C5.08431 13.08 4.48704 12.9508 4.53905 12.5359C4.56614 12.3198 4.86371 12.0989 5.43177 11.873Z" fill="white"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_4761_38981" x1="12" y1="0" x2="12" y2="23.822" gradientUnits="userSpaceOnUse">
+<stop stop-color="#2AABEE"/>
+<stop offset="1" stop-color="#229ED9"/>
+</linearGradient>
+<linearGradient id="paint1_linear_4761_38981" x1="12" y1="0" x2="12" y2="23.822" gradientUnits="userSpaceOnUse">
+<stop stop-color="#2AABEE"/>
+<stop offset="1" stop-color="#229ED9"/>
+</linearGradient>
+<clipPath id="clip0_4761_38981">
+<rect width="24" height="24" rx="5" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- ПРАВАЯ КОЛОНКА: АККОРДЕОН -->
+      <div class="about-right">
+
+        <!-- Process (открыт по умолчанию) -->
+        <div class="acc-item open" data-acc>
+          <button class="acc-header" data-acc-toggle>
+            <span class="acc-header-icon">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="acc-icon-path" d="M26.4051 16C29.6596 14.8923 32 11.8297 32 8.2223C32 3.68142 28.2932 0 23.7202 0C20.2028 0 17.1997 2.17937 16 5.25157C14.8003 2.17937 11.7972 0 8.27977 0C3.70716 0 0 3.68109 0 8.2223C0 11.8297 2.3404 14.8923 5.59486 16C2.3404 17.1077 0 20.1703 0 23.7777C0 28.3186 3.70682 32 8.27977 32C11.7972 32 14.8003 29.8206 16 26.7484C17.1997 29.8206 20.2028 32 23.7202 32C28.2928 32 32 28.3189 32 23.7777C32.0003 20.1703 29.6599 17.1077 26.4051 16ZM16.0003 20.807C15.1206 18.5539 13.2688 16.7851 10.9574 16C13.2688 15.2149 15.1206 13.4461 16.0003 11.193C16.8801 13.4461 18.7322 15.2149 21.0436 16C18.7319 16.7851 16.8801 18.5539 16.0003 20.807Z"/>
+              </svg>
+            </span>
+            <span class="acc-header-title">Proccess</span>
+            <span class="acc-header-chevron">
+              <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L8 8L15 1" stroke="#212B36" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+            <div>
+              <p class="acc-block-label">The proccess I work:</p>
+              <div class="acc-chip-row">
+                <span class="chip"><span class="chip-label">#1 Discover</span></span>
+                <span class="chip-sep">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g opacity="0.48">
+                      <path d="M10 15L15 10L10 5" stroke="#637381"/>
+                      <path d="M5 15L10 10L5 5" stroke="#637381"/>
+                    </g>
+                  </svg>
+                </span>
+                <span class="chip"><span class="chip-label">#2 Research</span></span>
+                <span class="chip-sep">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g opacity="0.48">
+                      <path d="M10 15L15 10L10 5" stroke="#637381"/>
+                      <path d="M5 15L10 10L5 5" stroke="#637381"/>
+                    </g>
+                  </svg>
+                </span>
+                <span class="chip"><span class="chip-label">#3 Define</span></span>
+                <span class="chip-sep">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g opacity="0.48">
+                      <path d="M10 15L15 10L10 5" stroke="#637381"/>
+                      <path d="M5 15L10 10L5 5" stroke="#637381"/>
+                    </g>
+                  </svg>
+                </span>
+                <span class="chip"><span class="chip-label">#4 Explore</span></span>
+                <span class="chip-sep">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g opacity="0.48">
+                      <path d="M10 15L15 10L10 5" stroke="#637381"/>
+                      <path d="M5 15L10 10L5 5" stroke="#637381"/>
+                    </g>
+                  </svg>
+                </span>
+                <span class="chip"><span class="chip-label">#5 Design</span></span>
+                <span class="chip-sep">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g opacity="0.48">
+                      <path d="M10 15L15 10L10 5" stroke="#637381"/>
+                      <path d="M5 15L10 10L5 5" stroke="#637381"/>
+                    </g>
+                  </svg>
+                </span>
+                <span class="chip"><span class="chip-label">#6 Validate</span></span>
+                <span class="chip-sep">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g opacity="0.48">
+                      <path d="M10 15L15 10L10 5" stroke="#637381"/>
+                      <path d="M5 15L10 10L5 5" stroke="#637381"/>
+                    </g>
+                  </svg>
+                </span>
+                <span class="chip"><span class="chip-label">#7 Iterate</span></span>
+                <span class="chip-sep">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g opacity="0.48">
+                      <path d="M10 15L15 10L10 5" stroke="#637381"/>
+                      <path d="M5 15L10 10L5 5" stroke="#637381"/>
+                    </g>
+                  </svg>
+                </span>
+                <span class="chip"><span class="chip-label">#8 Polish</span></span>
+              </div>
+            </div>
+            <div>
+              <p class="acc-block-label">Design Values:</p>
+              <div class="acc-chip-row acc-chip-row--values">
+                <span class="chip">
+                  <span class="chip-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3075 7.22035C10.9496 5.61967 11.2706 4.81932 11.7922 4.7084C11.9293 4.67923 12.0711 4.67923 12.2082 4.7084C12.7298 4.81932 13.0508 5.61967 13.6929 7.22035C14.058 8.13063 14.2406 8.58577 14.5822 8.89534C14.678 8.98217 14.782 9.0595 14.8928 9.12625C15.2876 9.36423 15.7805 9.40837 16.7663 9.49665C18.4351 9.6461 19.2695 9.72083 19.5243 10.1966C19.577 10.2951 19.6129 10.4018 19.6304 10.5122C19.7149 11.0452 19.1015 11.6033 17.8747 12.7194L17.534 13.0293C16.9605 13.5511 16.6737 13.812 16.5078 14.1376C16.4083 14.333 16.3416 14.5433 16.3104 14.7603C16.2582 15.122 16.3422 15.5004 16.5102 16.2574L16.5702 16.5279C16.8714 17.8854 17.022 18.5642 16.834 18.8978C16.6651 19.1975 16.3541 19.3894 16.0105 19.4058C15.6279 19.4241 15.089 18.9849 14.011 18.1065C13.3008 17.5278 12.9457 17.2384 12.5515 17.1254C12.1912 17.0221 11.8092 17.0221 11.4489 17.1254C11.0547 17.2384 10.6996 17.5278 9.98941 18.1065C8.91144 18.9849 8.37245 19.4241 7.98993 19.4058C7.64633 19.3894 7.33528 19.1975 7.16642 18.8978C6.97842 18.5642 7.12902 17.8854 7.43022 16.5279L7.49023 16.2574C7.65818 15.5004 7.74216 15.122 7.69004 14.7603C7.65878 14.5433 7.59207 14.333 7.49257 14.1376C7.32669 13.812 7.03992 13.5511 6.46637 13.0293L6.1257 12.7194C4.89891 11.6033 4.28552 11.0452 4.36999 10.5122C4.38749 10.4018 4.42337 10.2951 4.47614 10.1966C4.73094 9.72083 5.56532 9.6461 7.23408 9.49665C8.21986 9.40837 8.71276 9.36423 9.1076 9.12625C9.21834 9.0595 9.32236 8.98217 9.41818 8.89534C9.75979 8.58577 9.94236 8.13063 10.3075 7.22035Z" fill="#3953E5" stroke="#3953E5" stroke-width="2"/></svg></span>
+                  <span class="chip-label">Quality First</span>
+                </span>
+                <span class="chip">
+                  <span class="chip-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4" fill="#3953E5"/><path d="M5.33788 17.3206C5.99897 14.5269 8.77173 13 11.6426 13H12.3574C15.2283 13 18.001 14.5269 18.6621 17.3206C18.79 17.8611 18.8917 18.4268 18.9489 19.0016C19.0036 19.5512 18.5523 20 18 20H6C5.44772 20 4.99642 19.5512 5.0511 19.0016C5.1083 18.4268 5.20997 17.8611 5.33788 17.3206Z" fill="#3953E5"/></svg></span>
+                  <span class="chip-label">User-Centered</span>
+                </span>
+                <span class="chip">
+                  <span class="chip-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.1056 3.44721L5.78885 6.10557C5.00831 6.49585 4.61803 6.69098 4.61803 7C4.61803 7.30902 5.00831 7.50415 5.78885 7.89443L11.1056 10.5528C11.5445 10.7722 11.7639 10.882 12 10.882C12.2361 10.882 12.4555 10.7722 12.8944 10.5528L18.2111 7.89443C18.9917 7.50415 19.382 7.30902 19.382 7C19.382 6.69098 18.9917 6.49585 18.2111 6.10557L12.8944 3.44721C12.4555 3.22776 12.2361 3.11803 12 3.11803C11.7639 3.11803 11.5445 3.22776 11.1056 3.44721Z" fill="#3953E5"/><path d="M18.2109 11.1055C18.9912 11.4956 19.3816 11.6911 19.3818 12C19.3818 12.309 18.9915 12.5043 18.2109 12.8945L12.8945 15.5527C12.4556 15.7722 12.2361 15.8818 12 15.8818C11.764 15.8818 11.5443 15.7721 11.1055 15.5527L5.78906 12.8945C5.00852 12.5043 4.61816 12.309 4.61816 12C4.6184 11.6911 5.00875 11.4956 5.78906 11.1055L7.02246 10.4893C7.62622 10.8134 8.3371 11.169 9.15527 11.5781L10.2109 12.1064C11.0887 12.5453 11.5279 12.7646 12 12.7646C12.4721 12.7646 12.9113 12.5453 13.7891 12.1064L14.8447 11.5781C15.6626 11.1692 16.373 10.8133 16.9766 10.4893L18.2109 11.1055Z" fill="#3953E5"/><path d="M18.2109 16.1055C18.9915 16.4957 19.3818 16.691 19.3818 17C19.3818 17.309 18.9915 17.5043 18.2109 17.8945L12.8945 20.5527C12.4556 20.7722 12.2361 20.8818 12 20.8818C11.764 20.8818 11.5443 20.7721 11.1055 20.5527L5.78906 17.8945C5.00852 17.5043 4.61816 17.309 4.61816 17C4.6182 16.691 5.00855 16.4957 5.78906 16.1055L7.02148 15.4893C7.6254 15.8135 8.33675 16.1689 9.15527 16.5781L10.2109 17.1064C11.0887 17.5453 11.5279 17.7646 12 17.7646C12.4721 17.7646 12.9112 17.5454 13.7891 17.1064L14.8447 16.5781C15.6629 16.169 16.3738 15.8134 16.9775 15.4893L18.2109 16.1055Z" fill="#3953E5"/></svg></span>
+                  <span class="chip-label">Systems Thinking</span>
+                </span>
+                <span class="chip">
+                  <span class="chip-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 5C19.8856 5 20.8283 5.00015 21.4141 5.58594C21.9998 6.17172 22 7.11438 22 9V15C22 16.8856 21.9998 17.8283 21.4141 18.4141C20.8283 18.9998 19.8856 19 18 19H6C4.11438 19 3.17172 18.9998 2.58594 18.4141C2.00015 17.8283 2 16.8856 2 15V9C2 7.11438 2.00015 6.17172 2.58594 5.58594C3.17172 5.00015 4.11438 5 6 5H18ZM17 15C16.4477 15 16 15.4477 16 16C16 16.5523 16.4477 17 17 17H19C19.5523 17 20 16.5523 20 16C20 15.4477 19.5523 15 19 15H17ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9ZM12 11C12.5523 11 13 11.4477 13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11ZM5 7C4.44772 7 4 7.44772 4 8C4 8.55228 4.44772 9 5 9H7C7.55228 9 8 8.55228 8 8C8 7.44772 7.55228 7 7 7H5Z" fill="#3953E5"/></svg></span>
+                  <span class="chip-label">Business Driven</span>
+                </span>
+                <span class="chip">
+                  <span class="chip-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.45067 13.9082L11.4033 20.4395C11.6428 20.6644 11.7625 20.7769 11.9037 20.8046C11.9673 20.8171 12.0327 20.8171 12.0963 20.8046C12.2375 20.7769 12.3572 20.6644 12.5967 20.4395L19.5493 13.9082C21.5055 12.0706 21.743 9.0466 20.0978 6.92607L19.7885 6.52734C17.8203 3.99058 13.8696 4.41601 12.4867 7.31365C12.2913 7.72296 11.7087 7.72296 11.5133 7.31365C10.1304 4.41601 6.17972 3.99058 4.21154 6.52735L3.90219 6.92607C2.25695 9.0466 2.4945 12.0706 4.45067 13.9082Z" fill="#3953E5" stroke="#3953E5" stroke-width="2"/></svg></span>
+                  <span class="chip-label">Detail Obsessed</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        <!-- Clients (закрыт) -->
+        <div class="acc-item" data-acc>
+          <button class="acc-header" data-acc-toggle>
+            <span class="acc-header-icon">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="acc-icon-path" d="M26.4051 16C29.6596 14.8923 32 11.8297 32 8.2223C32 3.68142 28.2932 0 23.7202 0C20.2028 0 17.1997 2.17937 16 5.25157C14.8003 2.17937 11.7972 0 8.27978 0C3.70682 0 0 3.68109 0 8.2223C0 11.8297 2.3404 14.8923 5.59486 16C2.3404 17.1077 0 20.1703 0 23.7777C0 28.3189 3.70682 32 8.27978 32C11.7972 32 14.8003 29.8206 16 26.7484C17.1997 29.8206 20.2028 32 23.7202 32C28.2932 32 32 28.3189 32 23.7777C32 20.1703 29.6596 17.1077 26.4051 16ZM16 22.4978C12.386 22.4978 9.4568 19.5885 9.4568 15.9997C9.4568 12.4111 12.3864 9.50156 16 9.50156C19.6136 9.50156 22.5435 12.4108 22.5435 15.9997C22.5435 19.5885 19.614 22.4978 16 22.4978Z"/>
+              </svg>
+            </span>
+            <span class="acc-header-title">Clients</span>
+            <span class="acc-header-chevron">
+              <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L8 8L15 1" stroke="#212B36" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+            <div class="client-badges">
+              <div class="client-badge">
+                <span class="client-badge-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L12.2277 16.3821C12.6556 16.7245 13.2793 16.6586 13.6263 16.2345L22 6" stroke="#3953E5" stroke-width="2" stroke-linecap="round"/>
+<path d="M1.2004 13.4003C1.53174 12.9585 2.15802 12.8689 2.59982 13.2001L5.83321 15.6249L6.48556 14.826L8.02267 16.1063L7.38107 16.8915C6.70242 17.7207 5.4903 17.8673 4.63302 17.2245L1.4006 14.7997C0.958821 14.4683 0.869169 13.8421 1.2004 13.4003ZM14.2258 5.36706C14.5754 4.93983 15.2056 4.87619 15.633 5.22546C16.0601 5.57507 16.1238 6.20531 15.7746 6.63269L11.1897 12.2352L9.65255 10.955L14.2258 5.36706Z" fill="#3953E5"/>
+</svg></span>
+                <span class="client-badge-label">Early-stage Startups</span>
+              </div>
+              <div class="client-badge">
+                <span class="client-badge-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L12.2277 16.3821C12.6556 16.7245 13.2793 16.6586 13.6263 16.2345L22 6" stroke="#3953E5" stroke-width="2" stroke-linecap="round"/>
+<path d="M1.2004 13.4003C1.53174 12.9585 2.15802 12.8689 2.59982 13.2001L5.83321 15.6249L6.48556 14.826L8.02267 16.1063L7.38107 16.8915C6.70242 17.7207 5.4903 17.8673 4.63302 17.2245L1.4006 14.7997C0.958821 14.4683 0.869169 13.8421 1.2004 13.4003ZM14.2258 5.36706C14.5754 4.93983 15.2056 4.87619 15.633 5.22546C16.0601 5.57507 16.1238 6.20531 15.7746 6.63269L11.1897 12.2352L9.65255 10.955L14.2258 5.36706Z" fill="#3953E5"/>
+</svg></span>
+                <span class="client-badge-label">Growing Companies</span>
+              </div>
+              <div class="client-badge">
+                <span class="client-badge-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L12.2277 16.3821C12.6556 16.7245 13.2793 16.6586 13.6263 16.2345L22 6" stroke="#3953E5" stroke-width="2" stroke-linecap="round"/>
+<path d="M1.2004 13.4003C1.53174 12.9585 2.15802 12.8689 2.59982 13.2001L5.83321 15.6249L6.48556 14.826L8.02267 16.1063L7.38107 16.8915C6.70242 17.7207 5.4903 17.8673 4.63302 17.2245L1.4006 14.7997C0.958821 14.4683 0.869169 13.8421 1.2004 13.4003ZM14.2258 5.36706C14.5754 4.93983 15.2056 4.87619 15.633 5.22546C16.0601 5.57507 16.1238 6.20531 15.7746 6.63269L11.1897 12.2352L9.65255 10.955L14.2258 5.36706Z" fill="#3953E5"/>
+</svg></span>
+                <span class="client-badge-label">Enterprise</span>
+              </div>
+              <div class="client-badge">
+                <span class="client-badge-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L12.2277 16.3821C12.6556 16.7245 13.2793 16.6586 13.6263 16.2345L22 6" stroke="#3953E5" stroke-width="2" stroke-linecap="round"/>
+<path d="M1.2004 13.4003C1.53174 12.9585 2.15802 12.8689 2.59982 13.2001L5.83321 15.6249L6.48556 14.826L8.02267 16.1063L7.38107 16.8915C6.70242 17.7207 5.4903 17.8673 4.63302 17.2245L1.4006 14.7997C0.958821 14.4683 0.869169 13.8421 1.2004 13.4003ZM14.2258 5.36706C14.5754 4.93983 15.2056 4.87619 15.633 5.22546C16.0601 5.57507 16.1238 6.20531 15.7746 6.63269L11.1897 12.2352L9.65255 10.955L14.2258 5.36706Z" fill="#3953E5"/>
+</svg></span>
+                <span class="client-badge-label">Public Sector</span>
+              </div>
+              <div class="client-badge">
+                <span class="client-badge-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L12.2277 16.3821C12.6556 16.7245 13.2793 16.6586 13.6263 16.2345L22 6" stroke="#3953E5" stroke-width="2" stroke-linecap="round"/>
+<path d="M1.2004 13.4003C1.53174 12.9585 2.15802 12.8689 2.59982 13.2001L5.83321 15.6249L6.48556 14.826L8.02267 16.1063L7.38107 16.8915C6.70242 17.7207 5.4903 17.8673 4.63302 17.2245L1.4006 14.7997C0.958821 14.4683 0.869169 13.8421 1.2004 13.4003ZM14.2258 5.36706C14.5754 4.93983 15.2056 4.87619 15.633 5.22546C16.0601 5.57507 16.1238 6.20531 15.7746 6.63269L11.1897 12.2352L9.65255 10.955L14.2258 5.36706Z" fill="#3953E5"/>
+</svg></span>
+                <span class="client-badge-label">Global Organizations</span>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        <!-- Industries (закрыт) -->
+        <div class="acc-item" data-acc>
+          <button class="acc-header" data-acc-toggle>
+            <span class="acc-header-icon">
+              <svg viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="acc-icon-path" d="M27.4952 7.657L23.5524 7.33119L22.0246 3.67919C19.9724 -1.2264 13.0276 -1.2264 10.9754 3.67919L9.44758 7.33119L5.50484 7.657C0.20905 8.09464 -1.93679 14.7046 2.09053 18.1738L5.08878 20.7569L4.17988 24.6104C2.95917 29.7862 8.57738 33.8714 13.1188 31.1103L16.5 29.0546L19.8809 31.1103C24.4223 33.8714 30.0405 29.7865 28.8201 24.6104L27.9112 20.7569L30.9095 18.1738C34.9368 14.7046 32.7909 8.09464 27.4952 7.657ZM16.5 23.0838C13.1107 23.0838 10.3634 20.3339 10.3634 16.9421C10.3634 13.5503 13.1107 10.8005 16.5 10.8005C19.889 10.8005 22.6366 13.55 22.6366 16.9421C22.6366 20.3339 19.889 23.0838 16.5 23.0838Z"/>
+              </svg>
+            </span>
+            <span class="acc-header-title">Industries</span>
+            <span class="acc-header-chevron">
+              <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L8 8L15 1" stroke="#212B36" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+            <div class="client-badges">
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Technology</span>
+              </div>
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Finance</span>
+              </div>
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Business</span>
+              </div>
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Commerce</span>
+              </div>
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Real World</span>
+              </div>
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Healthcare</span>
+              </div>
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Government & Public</span>
+              </div>
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Legal</span>
+              </div>
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Marketing & Media</span>
+              </div>
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Hospitality & Lifestyle</span>
+              </div>
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Sustainability</span>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        <!-- Expertise (закрыт) -->
+        <div class="acc-item" data-acc>
+          <button class="acc-header" data-acc-toggle>
+            <span class="acc-header-icon">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="acc-icon-path" d="M28.2221 10.9378C30.7262 6.31836 25.6819 1.27379 21.0626 3.77794C19.567 -1.25931 12.4327 -1.25931 10.9374 3.77794C6.31806 1.27379 1.27349 6.31806 3.77794 10.9374C-1.25931 12.433 -1.25931 19.5673 3.77794 21.0626C1.27349 25.6819 6.31806 30.7265 10.9374 28.2221C12.433 33.2593 19.5673 33.2593 21.0626 28.2221C25.6819 30.7265 30.7265 25.6819 28.2221 21.0626C33.2593 19.5673 33.2593 12.4334 28.2221 10.9378ZM15.9997 22.2924C12.5248 22.2924 9.70762 19.4752 9.70762 16.0003C9.70762 12.5254 12.5245 9.70823 15.9997 9.70823C19.4749 9.70823 22.2918 12.5254 22.2918 16.0003C22.2918 19.4752 19.4749 22.2924 15.9997 22.2924Z"/>
+              </svg>
+            </span>
+            <span class="acc-header-title">Expertise</span>
+            <span class="acc-header-chevron">
+              <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L8 8L15 1" stroke="#212B36" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+            <div class="client-badges">
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Product Design</span>
+              </div>
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Platforms</span>
+              </div>
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Branding</span>
+              </div>
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Product Areas</span>
+              </div>
+              <div class="client-badge client-badge--no-icon">
+                <span class="client-badge-label">Strategy & Leadership</span>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        <!-- Services (закрыт) -->
+        <div class="acc-item" data-acc>
+          <button class="acc-header" data-acc-toggle>
+            <span class="acc-header-icon">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="acc-icon-path" d="M27.2721 12.388L19.813 14.4206L26.5248 10.5837C28.6675 9.35856 29.0594 6.43171 27.314 4.68631C25.5686 2.94091 22.6417 3.33254 21.4166 5.47554L17.5794 12.1873L19.612 4.7282C20.2609 2.34675 18.4682 0 16 0C13.5318 0 11.7391 2.34675 12.388 4.7282L14.4206 12.1873L10.5837 5.47554C9.35857 3.33283 6.43171 2.94121 4.68631 4.68631C2.94091 6.43171 3.33283 9.35856 5.47554 10.5837L12.1873 14.4206L4.7282 12.388C2.34675 11.7391 0 13.5318 0 16C0 18.4682 2.34675 20.2609 4.7282 19.612L12.1873 17.5794L5.47525 21.4163C3.33254 22.6414 2.94092 25.5683 4.68602 27.3137C6.43142 29.0591 9.35826 28.6675 10.5834 26.5245L14.4203 19.8127L12.3877 27.2718C11.7388 29.6532 13.5315 32 15.9997 32C18.4679 32 20.2606 29.6532 19.6117 27.2718L17.5791 19.8127L21.4163 26.5245C22.6414 28.6672 25.5683 29.0588 27.3137 27.3137C29.0591 25.5686 28.6672 22.6414 26.5245 21.4163L19.8127 17.5791L27.2718 19.6117C29.6532 20.2606 32 18.4679 32 15.9997C32.0003 13.5318 29.6536 11.7388 27.2721 12.388ZM16 18.8075C14.4494 18.8075 13.1922 17.5503 13.1922 15.9997C13.1922 14.4491 14.4494 13.1919 16 13.1919C17.5506 13.1919 18.8078 14.4491 18.8078 15.9997C18.8078 17.5506 17.5506 18.8075 16 18.8075Z"/>
+              </svg>
+            </span>
+            <span class="acc-header-title">Services</span>
+            <span class="acc-header-chevron">
+              <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L8 8L15 1" stroke="#212B36" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+            <div class="client-badges">
+              <div class="client-badge">
+                <span class="client-badge-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.3072 7.22035C10.9493 5.61967 11.2704 4.81932 11.7919 4.7084C11.9291 4.67923 12.0708 4.67923 12.208 4.7084C12.7295 4.81932 13.0506 5.61967 13.6927 7.22035C14.0578 8.13063 14.2404 8.58577 14.582 8.89534C14.6778 8.98217 14.7818 9.0595 14.8926 9.12625C15.2874 9.36423 15.7803 9.40837 16.7661 9.49665C18.4348 9.6461 19.2692 9.72083 19.524 10.1966C19.5768 10.2951 19.6127 10.4018 19.6302 10.5122C19.7146 11.0452 19.1012 11.6033 17.8744 12.7194L17.5338 13.0293C16.9602 13.5511 16.6735 13.812 16.5076 14.1376C16.4081 14.333 16.3414 14.5433 16.3101 14.7603C16.258 15.122 16.342 15.5004 16.5099 16.2574L16.5699 16.5279C16.8711 17.8854 17.0217 18.5642 16.8337 18.8978C16.6649 19.1975 16.3538 19.3894 16.0102 19.4058C15.6277 19.4241 15.0887 18.9849 14.0107 18.1065C13.3005 17.5278 12.9454 17.2384 12.5512 17.1254C12.191 17.0221 11.8089 17.0221 11.4487 17.1254C11.0545 17.2384 10.6994 17.5278 9.98917 18.1065C8.91119 18.9849 8.37221 19.4241 7.98968 19.4058C7.64609 19.3894 7.33504 19.1975 7.16617 18.8978C6.97818 18.5642 7.12878 17.8854 7.42997 16.5279L7.48998 16.2574C7.65794 15.5004 7.74191 15.122 7.6898 14.7603C7.65854 14.5433 7.59182 14.333 7.49232 14.1376C7.32645 13.812 7.03968 13.5511 6.46613 13.0293L6.12546 12.7194C4.89867 11.6033 4.28527 11.0452 4.36975 10.5122C4.38724 10.4018 4.42312 10.2951 4.47589 10.1966C4.73069 9.72083 5.56507 9.6461 7.23384 9.49665C8.21962 9.40837 8.71251 9.36423 9.10735 9.12625C9.2181 9.0595 9.32211 8.98217 9.41793 8.89534C9.75954 8.58577 9.94211 8.13063 10.3072 7.22035Z" fill="#3953E5" stroke="#3953E5" stroke-width="2"/>
+</svg></span>
+                <span class="client-badge-label">Product Design</span>
+              </div>
+              <div class="client-badge">
+                <span class="client-badge-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.3072 7.22035C10.9493 5.61967 11.2704 4.81932 11.7919 4.7084C11.9291 4.67923 12.0708 4.67923 12.208 4.7084C12.7295 4.81932 13.0506 5.61967 13.6927 7.22035C14.0578 8.13063 14.2404 8.58577 14.582 8.89534C14.6778 8.98217 14.7818 9.0595 14.8926 9.12625C15.2874 9.36423 15.7803 9.40837 16.7661 9.49665C18.4348 9.6461 19.2692 9.72083 19.524 10.1966C19.5768 10.2951 19.6127 10.4018 19.6302 10.5122C19.7146 11.0452 19.1012 11.6033 17.8744 12.7194L17.5338 13.0293C16.9602 13.5511 16.6735 13.812 16.5076 14.1376C16.4081 14.333 16.3414 14.5433 16.3101 14.7603C16.258 15.122 16.342 15.5004 16.5099 16.2574L16.5699 16.5279C16.8711 17.8854 17.0217 18.5642 16.8337 18.8978C16.6649 19.1975 16.3538 19.3894 16.0102 19.4058C15.6277 19.4241 15.0887 18.9849 14.0107 18.1065C13.3005 17.5278 12.9454 17.2384 12.5512 17.1254C12.191 17.0221 11.8089 17.0221 11.4487 17.1254C11.0545 17.2384 10.6994 17.5278 9.98917 18.1065C8.91119 18.9849 8.37221 19.4241 7.98968 19.4058C7.64609 19.3894 7.33504 19.1975 7.16617 18.8978C6.97818 18.5642 7.12878 17.8854 7.42997 16.5279L7.48998 16.2574C7.65794 15.5004 7.74191 15.122 7.6898 14.7603C7.65854 14.5433 7.59182 14.333 7.49232 14.1376C7.32645 13.812 7.03968 13.5511 6.46613 13.0293L6.12546 12.7194C4.89867 11.6033 4.28527 11.0452 4.36975 10.5122C4.38724 10.4018 4.42312 10.2951 4.47589 10.1966C4.73069 9.72083 5.56507 9.6461 7.23384 9.49665C8.21962 9.40837 8.71251 9.36423 9.10735 9.12625C9.2181 9.0595 9.32211 8.98217 9.41793 8.89534C9.75954 8.58577 9.94211 8.13063 10.3072 7.22035Z" fill="#3953E5" stroke="#3953E5" stroke-width="2"/>
+</svg></span>
+                <span class="client-badge-label">Mobile App Design</span>
+              </div>
+              <div class="client-badge">
+                <span class="client-badge-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.3072 7.22035C10.9493 5.61967 11.2704 4.81932 11.7919 4.7084C11.9291 4.67923 12.0708 4.67923 12.208 4.7084C12.7295 4.81932 13.0506 5.61967 13.6927 7.22035C14.0578 8.13063 14.2404 8.58577 14.582 8.89534C14.6778 8.98217 14.7818 9.0595 14.8926 9.12625C15.2874 9.36423 15.7803 9.40837 16.7661 9.49665C18.4348 9.6461 19.2692 9.72083 19.524 10.1966C19.5768 10.2951 19.6127 10.4018 19.6302 10.5122C19.7146 11.0452 19.1012 11.6033 17.8744 12.7194L17.5338 13.0293C16.9602 13.5511 16.6735 13.812 16.5076 14.1376C16.4081 14.333 16.3414 14.5433 16.3101 14.7603C16.258 15.122 16.342 15.5004 16.5099 16.2574L16.5699 16.5279C16.8711 17.8854 17.0217 18.5642 16.8337 18.8978C16.6649 19.1975 16.3538 19.3894 16.0102 19.4058C15.6277 19.4241 15.0887 18.9849 14.0107 18.1065C13.3005 17.5278 12.9454 17.2384 12.5512 17.1254C12.191 17.0221 11.8089 17.0221 11.4487 17.1254C11.0545 17.2384 10.6994 17.5278 9.98917 18.1065C8.91119 18.9849 8.37221 19.4241 7.98968 19.4058C7.64609 19.3894 7.33504 19.1975 7.16617 18.8978C6.97818 18.5642 7.12878 17.8854 7.42997 16.5279L7.48998 16.2574C7.65794 15.5004 7.74191 15.122 7.6898 14.7603C7.65854 14.5433 7.59182 14.333 7.49232 14.1376C7.32645 13.812 7.03968 13.5511 6.46613 13.0293L6.12546 12.7194C4.89867 11.6033 4.28527 11.0452 4.36975 10.5122C4.38724 10.4018 4.42312 10.2951 4.47589 10.1966C4.73069 9.72083 5.56507 9.6461 7.23384 9.49665C8.21962 9.40837 8.71251 9.36423 9.10735 9.12625C9.2181 9.0595 9.32211 8.98217 9.41793 8.89534C9.75954 8.58577 9.94211 8.13063 10.3072 7.22035Z" fill="#3953E5" stroke="#3953E5" stroke-width="2"/>
+</svg></span>
+                <span class="client-badge-label">Web App Design</span>
+              </div>
+              <div class="client-badge">
+                <span class="client-badge-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.3072 7.22035C10.9493 5.61967 11.2704 4.81932 11.7919 4.7084C11.9291 4.67923 12.0708 4.67923 12.208 4.7084C12.7295 4.81932 13.0506 5.61967 13.6927 7.22035C14.0578 8.13063 14.2404 8.58577 14.582 8.89534C14.6778 8.98217 14.7818 9.0595 14.8926 9.12625C15.2874 9.36423 15.7803 9.40837 16.7661 9.49665C18.4348 9.6461 19.2692 9.72083 19.524 10.1966C19.5768 10.2951 19.6127 10.4018 19.6302 10.5122C19.7146 11.0452 19.1012 11.6033 17.8744 12.7194L17.5338 13.0293C16.9602 13.5511 16.6735 13.812 16.5076 14.1376C16.4081 14.333 16.3414 14.5433 16.3101 14.7603C16.258 15.122 16.342 15.5004 16.5099 16.2574L16.5699 16.5279C16.8711 17.8854 17.0217 18.5642 16.8337 18.8978C16.6649 19.1975 16.3538 19.3894 16.0102 19.4058C15.6277 19.4241 15.0887 18.9849 14.0107 18.1065C13.3005 17.5278 12.9454 17.2384 12.5512 17.1254C12.191 17.0221 11.8089 17.0221 11.4487 17.1254C11.0545 17.2384 10.6994 17.5278 9.98917 18.1065C8.91119 18.9849 8.37221 19.4241 7.98968 19.4058C7.64609 19.3894 7.33504 19.1975 7.16617 18.8978C6.97818 18.5642 7.12878 17.8854 7.42997 16.5279L7.48998 16.2574C7.65794 15.5004 7.74191 15.122 7.6898 14.7603C7.65854 14.5433 7.59182 14.333 7.49232 14.1376C7.32645 13.812 7.03968 13.5511 6.46613 13.0293L6.12546 12.7194C4.89867 11.6033 4.28527 11.0452 4.36975 10.5122C4.38724 10.4018 4.42312 10.2951 4.47589 10.1966C4.73069 9.72083 5.56507 9.6461 7.23384 9.49665C8.21962 9.40837 8.71251 9.36423 9.10735 9.12625C9.2181 9.0595 9.32211 8.98217 9.41793 8.89534C9.75954 8.58577 9.94211 8.13063 10.3072 7.22035Z" fill="#3953E5" stroke="#3953E5" stroke-width="2"/>
+</svg></span>
+                <span class="client-badge-label">Website Design</span>
+              </div>
+              <div class="client-badge">
+                <span class="client-badge-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.3072 7.22035C10.9493 5.61967 11.2704 4.81932 11.7919 4.7084C11.9291 4.67923 12.0708 4.67923 12.208 4.7084C12.7295 4.81932 13.0506 5.61967 13.6927 7.22035C14.0578 8.13063 14.2404 8.58577 14.582 8.89534C14.6778 8.98217 14.7818 9.0595 14.8926 9.12625C15.2874 9.36423 15.7803 9.40837 16.7661 9.49665C18.4348 9.6461 19.2692 9.72083 19.524 10.1966C19.5768 10.2951 19.6127 10.4018 19.6302 10.5122C19.7146 11.0452 19.1012 11.6033 17.8744 12.7194L17.5338 13.0293C16.9602 13.5511 16.6735 13.812 16.5076 14.1376C16.4081 14.333 16.3414 14.5433 16.3101 14.7603C16.258 15.122 16.342 15.5004 16.5099 16.2574L16.5699 16.5279C16.8711 17.8854 17.0217 18.5642 16.8337 18.8978C16.6649 19.1975 16.3538 19.3894 16.0102 19.4058C15.6277 19.4241 15.0887 18.9849 14.0107 18.1065C13.3005 17.5278 12.9454 17.2384 12.5512 17.1254C12.191 17.0221 11.8089 17.0221 11.4487 17.1254C11.0545 17.2384 10.6994 17.5278 9.98917 18.1065C8.91119 18.9849 8.37221 19.4241 7.98968 19.4058C7.64609 19.3894 7.33504 19.1975 7.16617 18.8978C6.97818 18.5642 7.12878 17.8854 7.42997 16.5279L7.48998 16.2574C7.65794 15.5004 7.74191 15.122 7.6898 14.7603C7.65854 14.5433 7.59182 14.333 7.49232 14.1376C7.32645 13.812 7.03968 13.5511 6.46613 13.0293L6.12546 12.7194C4.89867 11.6033 4.28527 11.0452 4.36975 10.5122C4.38724 10.4018 4.42312 10.2951 4.47589 10.1966C4.73069 9.72083 5.56507 9.6461 7.23384 9.49665C8.21962 9.40837 8.71251 9.36423 9.10735 9.12625C9.2181 9.0595 9.32211 8.98217 9.41793 8.89534C9.75954 8.58577 9.94211 8.13063 10.3072 7.22035Z" fill="#3953E5" stroke="#3953E5" stroke-width="2"/>
+</svg></span>
+                <span class="client-badge-label">Landing Pages</span>
+              </div>
+              <div class="client-badge">
+                <span class="client-badge-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.3072 7.22035C10.9493 5.61967 11.2704 4.81932 11.7919 4.7084C11.9291 4.67923 12.0708 4.67923 12.208 4.7084C12.7295 4.81932 13.0506 5.61967 13.6927 7.22035C14.0578 8.13063 14.2404 8.58577 14.582 8.89534C14.6778 8.98217 14.7818 9.0595 14.8926 9.12625C15.2874 9.36423 15.7803 9.40837 16.7661 9.49665C18.4348 9.6461 19.2692 9.72083 19.524 10.1966C19.5768 10.2951 19.6127 10.4018 19.6302 10.5122C19.7146 11.0452 19.1012 11.6033 17.8744 12.7194L17.5338 13.0293C16.9602 13.5511 16.6735 13.812 16.5076 14.1376C16.4081 14.333 16.3414 14.5433 16.3101 14.7603C16.258 15.122 16.342 15.5004 16.5099 16.2574L16.5699 16.5279C16.8711 17.8854 17.0217 18.5642 16.8337 18.8978C16.6649 19.1975 16.3538 19.3894 16.0102 19.4058C15.6277 19.4241 15.0887 18.9849 14.0107 18.1065C13.3005 17.5278 12.9454 17.2384 12.5512 17.1254C12.191 17.0221 11.8089 17.0221 11.4487 17.1254C11.0545 17.2384 10.6994 17.5278 9.98917 18.1065C8.91119 18.9849 8.37221 19.4241 7.98968 19.4058C7.64609 19.3894 7.33504 19.1975 7.16617 18.8978C6.97818 18.5642 7.12878 17.8854 7.42997 16.5279L7.48998 16.2574C7.65794 15.5004 7.74191 15.122 7.6898 14.7603C7.65854 14.5433 7.59182 14.333 7.49232 14.1376C7.32645 13.812 7.03968 13.5511 6.46613 13.0293L6.12546 12.7194C4.89867 11.6033 4.28527 11.0452 4.36975 10.5122C4.38724 10.4018 4.42312 10.2951 4.47589 10.1966C4.73069 9.72083 5.56507 9.6461 7.23384 9.49665C8.21962 9.40837 8.71251 9.36423 9.10735 9.12625C9.2181 9.0595 9.32211 8.98217 9.41793 8.89534C9.75954 8.58577 9.94211 8.13063 10.3072 7.22035Z" fill="#3953E5" stroke="#3953E5" stroke-width="2"/>
+</svg></span>
+                <span class="client-badge-label">Design Systems</span>
+              </div>
+              <div class="client-badge">
+                <span class="client-badge-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.3072 7.22035C10.9493 5.61967 11.2704 4.81932 11.7919 4.7084C11.9291 4.67923 12.0708 4.67923 12.208 4.7084C12.7295 4.81932 13.0506 5.61967 13.6927 7.22035C14.0578 8.13063 14.2404 8.58577 14.582 8.89534C14.6778 8.98217 14.7818 9.0595 14.8926 9.12625C15.2874 9.36423 15.7803 9.40837 16.7661 9.49665C18.4348 9.6461 19.2692 9.72083 19.524 10.1966C19.5768 10.2951 19.6127 10.4018 19.6302 10.5122C19.7146 11.0452 19.1012 11.6033 17.8744 12.7194L17.5338 13.0293C16.9602 13.5511 16.6735 13.812 16.5076 14.1376C16.4081 14.333 16.3414 14.5433 16.3101 14.7603C16.258 15.122 16.342 15.5004 16.5099 16.2574L16.5699 16.5279C16.8711 17.8854 17.0217 18.5642 16.8337 18.8978C16.6649 19.1975 16.3538 19.3894 16.0102 19.4058C15.6277 19.4241 15.0887 18.9849 14.0107 18.1065C13.3005 17.5278 12.9454 17.2384 12.5512 17.1254C12.191 17.0221 11.8089 17.0221 11.4487 17.1254C11.0545 17.2384 10.6994 17.5278 9.98917 18.1065C8.91119 18.9849 8.37221 19.4241 7.98968 19.4058C7.64609 19.3894 7.33504 19.1975 7.16617 18.8978C6.97818 18.5642 7.12878 17.8854 7.42997 16.5279L7.48998 16.2574C7.65794 15.5004 7.74191 15.122 7.6898 14.7603C7.65854 14.5433 7.59182 14.333 7.49232 14.1376C7.32645 13.812 7.03968 13.5511 6.46613 13.0293L6.12546 12.7194C4.89867 11.6033 4.28527 11.0452 4.36975 10.5122C4.38724 10.4018 4.42312 10.2951 4.47589 10.1966C4.73069 9.72083 5.56507 9.6461 7.23384 9.49665C8.21962 9.40837 8.71251 9.36423 9.10735 9.12625C9.2181 9.0595 9.32211 8.98217 9.41793 8.89534C9.75954 8.58577 9.94211 8.13063 10.3072 7.22035Z" fill="#3953E5" stroke="#3953E5" stroke-width="2"/>
+</svg></span>
+                <span class="client-badge-label">UX Audit</span>
+              </div>
+              <div class="client-badge">
+                <span class="client-badge-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.3072 7.22035C10.9493 5.61967 11.2704 4.81932 11.7919 4.7084C11.9291 4.67923 12.0708 4.67923 12.208 4.7084C12.7295 4.81932 13.0506 5.61967 13.6927 7.22035C14.0578 8.13063 14.2404 8.58577 14.582 8.89534C14.6778 8.98217 14.7818 9.0595 14.8926 9.12625C15.2874 9.36423 15.7803 9.40837 16.7661 9.49665C18.4348 9.6461 19.2692 9.72083 19.524 10.1966C19.5768 10.2951 19.6127 10.4018 19.6302 10.5122C19.7146 11.0452 19.1012 11.6033 17.8744 12.7194L17.5338 13.0293C16.9602 13.5511 16.6735 13.812 16.5076 14.1376C16.4081 14.333 16.3414 14.5433 16.3101 14.7603C16.258 15.122 16.342 15.5004 16.5099 16.2574L16.5699 16.5279C16.8711 17.8854 17.0217 18.5642 16.8337 18.8978C16.6649 19.1975 16.3538 19.3894 16.0102 19.4058C15.6277 19.4241 15.0887 18.9849 14.0107 18.1065C13.3005 17.5278 12.9454 17.2384 12.5512 17.1254C12.191 17.0221 11.8089 17.0221 11.4487 17.1254C11.0545 17.2384 10.6994 17.5278 9.98917 18.1065C8.91119 18.9849 8.37221 19.4241 7.98968 19.4058C7.64609 19.3894 7.33504 19.1975 7.16617 18.8978C6.97818 18.5642 7.12878 17.8854 7.42997 16.5279L7.48998 16.2574C7.65794 15.5004 7.74191 15.122 7.6898 14.7603C7.65854 14.5433 7.59182 14.333 7.49232 14.1376C7.32645 13.812 7.03968 13.5511 6.46613 13.0293L6.12546 12.7194C4.89867 11.6033 4.28527 11.0452 4.36975 10.5122C4.38724 10.4018 4.42312 10.2951 4.47589 10.1966C4.73069 9.72083 5.56507 9.6461 7.23384 9.49665C8.21962 9.40837 8.71251 9.36423 9.10735 9.12625C9.2181 9.0595 9.32211 8.98217 9.41793 8.89534C9.75954 8.58577 9.94211 8.13063 10.3072 7.22035Z" fill="#3953E5" stroke="#3953E5" stroke-width="2"/>
+</svg></span>
+                <span class="client-badge-label">Product Discovery</span>
+              </div>
+              <div class="client-badge">
+                <span class="client-badge-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.3072 7.22035C10.9493 5.61967 11.2704 4.81932 11.7919 4.7084C11.9291 4.67923 12.0708 4.67923 12.208 4.7084C12.7295 4.81932 13.0506 5.61967 13.6927 7.22035C14.0578 8.13063 14.2404 8.58577 14.582 8.89534C14.6778 8.98217 14.7818 9.0595 14.8926 9.12625C15.2874 9.36423 15.7803 9.40837 16.7661 9.49665C18.4348 9.6461 19.2692 9.72083 19.524 10.1966C19.5768 10.2951 19.6127 10.4018 19.6302 10.5122C19.7146 11.0452 19.1012 11.6033 17.8744 12.7194L17.5338 13.0293C16.9602 13.5511 16.6735 13.812 16.5076 14.1376C16.4081 14.333 16.3414 14.5433 16.3101 14.7603C16.258 15.122 16.342 15.5004 16.5099 16.2574L16.5699 16.5279C16.8711 17.8854 17.0217 18.5642 16.8337 18.8978C16.6649 19.1975 16.3538 19.3894 16.0102 19.4058C15.6277 19.4241 15.0887 18.9849 14.0107 18.1065C13.3005 17.5278 12.9454 17.2384 12.5512 17.1254C12.191 17.0221 11.8089 17.0221 11.4487 17.1254C11.0545 17.2384 10.6994 17.5278 9.98917 18.1065C8.91119 18.9849 8.37221 19.4241 7.98968 19.4058C7.64609 19.3894 7.33504 19.1975 7.16617 18.8978C6.97818 18.5642 7.12878 17.8854 7.42997 16.5279L7.48998 16.2574C7.65794 15.5004 7.74191 15.122 7.6898 14.7603C7.65854 14.5433 7.59182 14.333 7.49232 14.1376C7.32645 13.812 7.03968 13.5511 6.46613 13.0293L6.12546 12.7194C4.89867 11.6033 4.28527 11.0452 4.36975 10.5122C4.38724 10.4018 4.42312 10.2951 4.47589 10.1966C4.73069 9.72083 5.56507 9.6461 7.23384 9.49665C8.21962 9.40837 8.71251 9.36423 9.10735 9.12625C9.2181 9.0595 9.32211 8.98217 9.41793 8.89534C9.75954 8.58577 9.94211 8.13063 10.3072 7.22035Z" fill="#3953E5" stroke="#3953E5" stroke-width="2"/>
+</svg></span>
+                <span class="client-badge-label">Branding</span>
+              </div>
+              <div class="client-badge">
+                <span class="client-badge-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.3072 7.22035C10.9493 5.61967 11.2704 4.81932 11.7919 4.7084C11.9291 4.67923 12.0708 4.67923 12.208 4.7084C12.7295 4.81932 13.0506 5.61967 13.6927 7.22035C14.0578 8.13063 14.2404 8.58577 14.582 8.89534C14.6778 8.98217 14.7818 9.0595 14.8926 9.12625C15.2874 9.36423 15.7803 9.40837 16.7661 9.49665C18.4348 9.6461 19.2692 9.72083 19.524 10.1966C19.5768 10.2951 19.6127 10.4018 19.6302 10.5122C19.7146 11.0452 19.1012 11.6033 17.8744 12.7194L17.5338 13.0293C16.9602 13.5511 16.6735 13.812 16.5076 14.1376C16.4081 14.333 16.3414 14.5433 16.3101 14.7603C16.258 15.122 16.342 15.5004 16.5099 16.2574L16.5699 16.5279C16.8711 17.8854 17.0217 18.5642 16.8337 18.8978C16.6649 19.1975 16.3538 19.3894 16.0102 19.4058C15.6277 19.4241 15.0887 18.9849 14.0107 18.1065C13.3005 17.5278 12.9454 17.2384 12.5512 17.1254C12.191 17.0221 11.8089 17.0221 11.4487 17.1254C11.0545 17.2384 10.6994 17.5278 9.98917 18.1065C8.91119 18.9849 8.37221 19.4241 7.98968 19.4058C7.64609 19.3894 7.33504 19.1975 7.16617 18.8978C6.97818 18.5642 7.12878 17.8854 7.42997 16.5279L7.48998 16.2574C7.65794 15.5004 7.74191 15.122 7.6898 14.7603C7.65854 14.5433 7.59182 14.333 7.49232 14.1376C7.32645 13.812 7.03968 13.5511 6.46613 13.0293L6.12546 12.7194C4.89867 11.6033 4.28527 11.0452 4.36975 10.5122C4.38724 10.4018 4.42312 10.2951 4.47589 10.1966C4.73069 9.72083 5.56507 9.6461 7.23384 9.49665C8.21962 9.40837 8.71251 9.36423 9.10735 9.12625C9.2181 9.0595 9.32211 8.98217 9.41793 8.89534C9.75954 8.58577 9.94211 8.13063 10.3072 7.22035Z" fill="#3953E5" stroke="#3953E5" stroke-width="2"/>
+</svg></span>
+                <span class="client-badge-label">Logo Design</span>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <section id="animated-element">
+    <div class="marquee-stack">
+      <div class="marquee marquee--top">
+        <div class="marquee-track">
+        <span class="marquee-item">
+          <span class="marquee-text">Products succeed when people forget they&rsquo;re using them.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Always learning. Always refining.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Quality isn&rsquo;t added at the end. It&rsquo;s designed from the start.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Products succeed when people forget they&rsquo;re using them.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Always learning. Always refining.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Quality isn&rsquo;t added at the end. It&rsquo;s designed from the start.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Products succeed when people forget they&rsquo;re using them.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Always learning. Always refining.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Quality isn&rsquo;t added at the end. It&rsquo;s designed from the start.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Products succeed when people forget they&rsquo;re using them.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Always learning. Always refining.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Quality isn&rsquo;t added at the end. It&rsquo;s designed from the start.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Products succeed when people forget they&rsquo;re using them.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Always learning. Always refining.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Quality isn&rsquo;t added at the end. It&rsquo;s designed from the start.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Products succeed when people forget they&rsquo;re using them.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Always learning. Always refining.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Quality isn&rsquo;t added at the end. It&rsquo;s designed from the start.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+      </div>
+      </div>
+      <div class="marquee marquee--bottom">
+        <div class="marquee-track marquee-track--reverse">
+        <span class="marquee-item">
+          <span class="marquee-text">Every great product starts with a better question.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Think deeply. Design simply.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Good design solves problems. Great design prevents them.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Every great product starts with a better question.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Think deeply. Design simply.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Good design solves problems. Great design prevents them.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Every great product starts with a better question.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Think deeply. Design simply.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Good design solves problems. Great design prevents them.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Every great product starts with a better question.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Think deeply. Design simply.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Good design solves problems. Great design prevents them.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Every great product starts with a better question.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Think deeply. Design simply.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Good design solves problems. Great design prevents them.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Every great product starts with a better question.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Think deeply. Design simply.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+        <span class="marquee-item">
+          <span class="marquee-text">Good design solves problems. Great design prevents them.</span>
+          <span class="marquee-icon">
+            <svg width="55" height="80" viewBox="0 0 55 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 65V55.9623H38.9633L50.3029 44.5174L43.5877 37.7405L32.2481 49.185V33H22.7519V49.185L11.4118 37.7405L4.69664 44.5174L16.0367 55.9623H0L0 65H55Z" fill="#DFE3E8"/>
+            </svg>
+          </span>
+        </span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <div class="sticky-stack sticky-stack-project">
+  <section id="feedbacks">
+    <h2 class="feedbacks-title">People say.</h2>
+
+    <div class="feedback-marquee feedback-marquee--mirror" data-row="1">
+      <div class="feedback-marquee-track">
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Extremely professional freelancer. Dmytro was able to develop awesome designs for my music App and delivered just what I needed. The communication was great and overall I didn’t have any problems throughout the project.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-olga-shevchenko.webp" alt="Olga Shevchenko" /></div>
+            <span class="feedback-name">Olga Shevchenko</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-olga-shevchenko.svg" alt="Olga Shevchenko flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Work with Dmytro was a pleasure for me. He did a great job, it was done perfect and in short time. I recommend this freelancer to everyone. We definitely will be working together in future.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-alex-pechcovich.webp" alt="Alex Pechcovich" /></div>
+            <span class="feedback-name">Alex Pechcovich</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-alex-pechcovich.svg" alt="Alex Pechcovich flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Outstanding work on our full UI/UX redesign and new logo. Dmytro is a clear communicator, accountable, and genuinely committed to quality — the redesign transformed our whole product. Highly recommended.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-ali-amin.webp" alt="Ali Amin" /></div>
+            <span class="feedback-name">Ali Amin</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-ali-amin.svg" alt="Ali Amin flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro successfully completed the first phase of the project. We were interrupted because his manager was out of the office for a couple of weeks unexpectedly, but we’ll be re-engaging him in the near future to complete tasks.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-christian-rodriguez.webp" alt="Christian Rodriguez" /></div>
+            <span class="feedback-name">Christian Rodriguez</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-christian-rodriguez.svg" alt="Christian Rodriguez flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro was great to work with on our UX design project. He communicated clearly throughout, was very responsive, and consistently delivered work quickly. He was easy to collaborate with, making the whole process smooth.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-dan-whitelegg.webp" alt="Dan Whitelegg" /></div>
+            <span class="feedback-name">Dan Whitelegg</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-dan-whitelegg.svg" alt="Dan Whitelegg flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro did a great job on the project - build website from scratch. He was responsible, quality-focused, and solution-oriented. He made sure the project was completed successfully, and I’m very happy with the result.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-katerina-dominicis.webp" alt="Katerina Dominicis" /></div>
+            <span class="feedback-name">Katerina Dominicis</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-katerina-dominicis.svg" alt="Katerina Dominicis flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Absolutely fantastic. I’ve sent a brief to Dmytro, and was worried since the deadline was approaching, and he had no questions at all. I was blown away. On spot design + he went beyond that and provided suggestions.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-miroslav-bettervic.webp" alt="Miroslav Bettervic" /></div>
+            <span class="feedback-name">Miroslav Bettervic</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-miroslav-bettervic.svg" alt="Miroslav Bettervic flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro is a seasoned design specialist and happy to have him on the project which was delivered very professionally. Above all a good person to work with i enjoyed the collaboration. I would totally recommend him.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-shankar-peerthy.webp" alt="Shankar Peerthy" /></div>
+            <span class="feedback-name">Shankar Peerthy</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-shankar-peerthy.svg" alt="Shankar Peerthy flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">I highly recommend Dmytro, who has done a redesign for our website. His attention to detail and quality was on a good level. Also, great ability to hear what we what in translate it into the final result.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-yuriy-demoshenko.webp" alt="Yuriy Demoshenko" /></div>
+            <span class="feedback-name">Yuriy Demoshenko</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-yuriy-demoshenko.svg" alt="Yuriy Demoshenko flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Extremely professional freelancer. Dmytro was able to develop awesome designs for my music App and delivered just what I needed. The communication was great and overall I didn’t have any problems throughout the project.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-olga-shevchenko.webp" alt="Olga Shevchenko" /></div>
+            <span class="feedback-name">Olga Shevchenko</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-olga-shevchenko.svg" alt="Olga Shevchenko flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Work with Dmytro was a pleasure for me. He did a great job, it was done perfect and in short time. I recommend this freelancer to everyone. We definitely will be working together in future.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-alex-pechcovich.webp" alt="Alex Pechcovich" /></div>
+            <span class="feedback-name">Alex Pechcovich</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-alex-pechcovich.svg" alt="Alex Pechcovich flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Outstanding work on our full UI/UX redesign and new logo. Dmytro is a clear communicator, accountable, and genuinely committed to quality — the redesign transformed our whole product. Highly recommended.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-ali-amin.webp" alt="Ali Amin" /></div>
+            <span class="feedback-name">Ali Amin</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-ali-amin.svg" alt="Ali Amin flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro successfully completed the first phase of the project. We were interrupted because his manager was out of the office for a couple of weeks unexpectedly, but we’ll be re-engaging him in the near future to complete tasks.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-christian-rodriguez.webp" alt="Christian Rodriguez" /></div>
+            <span class="feedback-name">Christian Rodriguez</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-christian-rodriguez.svg" alt="Christian Rodriguez flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro was great to work with on our UX design project. He communicated clearly throughout, was very responsive, and consistently delivered work quickly. He was easy to collaborate with, making the whole process smooth.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-dan-whitelegg.webp" alt="Dan Whitelegg" /></div>
+            <span class="feedback-name">Dan Whitelegg</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-dan-whitelegg.svg" alt="Dan Whitelegg flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro did a great job on the project - build website from scratch. He was responsible, quality-focused, and solution-oriented. He made sure the project was completed successfully, and I’m very happy with the result.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-katerina-dominicis.webp" alt="Katerina Dominicis" /></div>
+            <span class="feedback-name">Katerina Dominicis</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-katerina-dominicis.svg" alt="Katerina Dominicis flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Absolutely fantastic. I’ve sent a brief to Dmytro, and was worried since the deadline was approaching, and he had no questions at all. I was blown away. On spot design + he went beyond that and provided suggestions.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-miroslav-bettervic.webp" alt="Miroslav Bettervic" /></div>
+            <span class="feedback-name">Miroslav Bettervic</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-miroslav-bettervic.svg" alt="Miroslav Bettervic flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro is a seasoned design specialist and happy to have him on the project which was delivered very professionally. Above all a good person to work with i enjoyed the collaboration. I would totally recommend him.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-shankar-peerthy.webp" alt="Shankar Peerthy" /></div>
+            <span class="feedback-name">Shankar Peerthy</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-shankar-peerthy.svg" alt="Shankar Peerthy flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">I highly recommend Dmytro, who has done a redesign for our website. His attention to detail and quality was on a good level. Also, great ability to hear what we what in translate it into the final result.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-yuriy-demoshenko.webp" alt="Yuriy Demoshenko" /></div>
+            <span class="feedback-name">Yuriy Demoshenko</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-yuriy-demoshenko.svg" alt="Yuriy Demoshenko flag" /></div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="feedback-marquee" data-row="2">
+      <div class="feedback-marquee-track">
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">He is awesome. He has an eye for excellent design while having a marketing mind. It's a great combo. Lover working with him and will work with him again.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-amitej-amitej.webp" alt="Amitej Amitej" /></div>
+            <span class="feedback-name">Amitej Amitej</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-amitej-amitej.svg" alt="Amitej Amitej flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro is a very creative and easygoing designer and I was pleased working with him. He listens carefully and provides the solution precisely that you need.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-anar-agayarov.webp" alt="Anar Agayarov" /></div>
+            <span class="feedback-name">Anar Agayarov</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-anar-agayarov.svg" alt="Anar Agayarov flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro is professional, responsive and responsible freelancer. Design done quickly and achieved all goals. I highly recommend as a designer.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-anastasiya-leus.webp" alt="Anastasiya Leus" /></div>
+            <span class="feedback-name">Anastasiya Leus</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-anastasiya-leus.svg" alt="Anastasiya Leus flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">I just had a great time working with Dmytro. Great communication skills and an awesome sense of good designs. Would recommend him for sure!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-denis-salaev.webp" alt="Denis Salaev" /></div>
+            <span class="feedback-name">Denis Salaev</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-denis-salaev.svg" alt="Denis Salaev flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Great designer! Super easy to communicate and very fast turnaround. Project went as smooth as possible. Highly recommended!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-hyojin-oh.webp" alt="Hyojin Oh" /></div>
+            <span class="feedback-name">Hyojin Oh</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-hyojin-oh.svg" alt="Hyojin Oh flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro created about 30+ template designs for us! He parsed our feedback exceptionally well and got us a great outcome very quickly. Thank you!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-jonathan-denney.webp" alt="Jonathan Denney" /></div>
+            <span class="feedback-name">Jonathan Denney</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-jonathan-denney.svg" alt="Jonathan Denney flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Excellent experience overall - I would highly recommend. Great work, work ethic, communications, and I'm very pleased with the result. Thanks Dmytro!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-kevin-bibby.webp" alt="Kevin Bibby" /></div>
+            <span class="feedback-name">Kevin Bibby</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-kevin-bibby.svg" alt="Kevin Bibby flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Incredible experience. Work done to a really high standard and made it very simple for our coders to take the designs and create webpages with them. Will use again.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-sacha-mach.webp" alt="Sacha Mach" /></div>
+            <span class="feedback-name">Sacha Mach</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-sacha-mach.svg" alt="Sacha Mach flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro extended his beautiful design work to our landing pages, quickly and effectively as usual. Thank you very much again!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-sebastian-behler.webp" alt="Sebastian Behler" /></div>
+            <span class="feedback-name">Sebastian Behler</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-sebastian-behler.svg" alt="Sebastian Behler flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Very satisfied with work delivered. Dmytro is high qualified and skilled designer. Definitely will work again. Recommend to all!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-yuliana-lashchenko.webp" alt="Yuliana Lashchenko" /></div>
+            <span class="feedback-name">Yuliana Lashchenko</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-yuliana-lashchenko.svg" alt="Yuliana Lashchenko flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">He is awesome. He has an eye for excellent design while having a marketing mind. It's a great combo. Lover working with him and will work with him again.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-amitej-amitej.webp" alt="Amitej Amitej" /></div>
+            <span class="feedback-name">Amitej Amitej</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-amitej-amitej.svg" alt="Amitej Amitej flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro is a very creative and easygoing designer and I was pleased working with him. He listens carefully and provides the solution precisely that you need.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-anar-agayarov.webp" alt="Anar Agayarov" /></div>
+            <span class="feedback-name">Anar Agayarov</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-anar-agayarov.svg" alt="Anar Agayarov flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro is professional, responsive and responsible freelancer. Design done quickly and achieved all goals. I highly recommend as a designer.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-anastasiya-leus.webp" alt="Anastasiya Leus" /></div>
+            <span class="feedback-name">Anastasiya Leus</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-anastasiya-leus.svg" alt="Anastasiya Leus flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">I just had a great time working with Dmytro. Great communication skills and an awesome sense of good designs. Would recommend him for sure!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-denis-salaev.webp" alt="Denis Salaev" /></div>
+            <span class="feedback-name">Denis Salaev</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-denis-salaev.svg" alt="Denis Salaev flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Great designer! Super easy to communicate and very fast turnaround. Project went as smooth as possible. Highly recommended!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-hyojin-oh.webp" alt="Hyojin Oh" /></div>
+            <span class="feedback-name">Hyojin Oh</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-hyojin-oh.svg" alt="Hyojin Oh flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro created about 30+ template designs for us! He parsed our feedback exceptionally well and got us a great outcome very quickly. Thank you!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-jonathan-denney.webp" alt="Jonathan Denney" /></div>
+            <span class="feedback-name">Jonathan Denney</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-jonathan-denney.svg" alt="Jonathan Denney flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Excellent experience overall - I would highly recommend. Great work, work ethic, communications, and I'm very pleased with the result. Thanks Dmytro!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-kevin-bibby.webp" alt="Kevin Bibby" /></div>
+            <span class="feedback-name">Kevin Bibby</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-kevin-bibby.svg" alt="Kevin Bibby flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Incredible experience. Work done to a really high standard and made it very simple for our coders to take the designs and create webpages with them. Will use again.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-sacha-mach.webp" alt="Sacha Mach" /></div>
+            <span class="feedback-name">Sacha Mach</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-sacha-mach.svg" alt="Sacha Mach flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro extended his beautiful design work to our landing pages, quickly and effectively as usual. Thank you very much again!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-sebastian-behler.webp" alt="Sebastian Behler" /></div>
+            <span class="feedback-name">Sebastian Behler</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-sebastian-behler.svg" alt="Sebastian Behler flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Very satisfied with work delivered. Dmytro is high qualified and skilled designer. Definitely will work again. Recommend to all!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-yuliana-lashchenko.webp" alt="Yuliana Lashchenko" /></div>
+            <span class="feedback-name">Yuliana Lashchenko</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-yuliana-lashchenko.svg" alt="Yuliana Lashchenko flag" /></div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="feedback-marquee feedback-marquee--mirror" data-row="3">
+      <div class="feedback-marquee-track">
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">He did a great job. Work with Dmytro was a pleasure for me and I’m definitely gonna work with him in future.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-artur-yuzefovich.webp" alt="Artur Yuzefovich" /></div>
+            <span class="feedback-name">Artur Yuzefovich</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-artur-yuzefovich.svg" alt="Artur Yuzefovich flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Great work designing two mobile app pages, and super quick turnaround. Exactly what I was looking for!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-channing-defoe.webp" alt="Channing Defoe" /></div>
+            <span class="feedback-name">Channing Defoe</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-channing-defoe.svg" alt="Channing Defoe flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dymtro worked fast and communicated clearly with us. We look forward to working with him more!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-jonathan-denney.webp" alt="Jonathan Denney" /></div>
+            <span class="feedback-name">Jonathan Denney</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-jonathan-denney.svg" alt="Jonathan Denney flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro does fantastic work. I have already hired him more than once. A+</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-kellis-landrum.webp" alt="Kellis Landrum" /></div>
+            <span class="feedback-name">Kellis Landrum</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-kellis-landrum.svg" alt="Kellis Landrum flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Talented Designer! He provided valuable feedback to our mockups.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-lars-weber.webp" alt="Lars Weber" /></div>
+            <span class="feedback-name">Lars Weber</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-lars-weber.svg" alt="Lars Weber flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro is an excellent designer, and I enjoyed working with him.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-shafique-jamal.webp" alt="Shafique Jamal" /></div>
+            <span class="feedback-name">Shafique Jamal</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-shafique-jamal.svg" alt="Shafique Jamal flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Great experience. Our website launched in time and got great feedback! Would love to work together in the near future.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-stan-vanorbeek.webp" alt="Stan Vanorbeek" /></div>
+            <span class="feedback-name">Stan Vanorbeek</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-stan-vanorbeek.svg" alt="Stan Vanorbeek flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro is a great web designer. The design of our news portal has become awesome. I can highly recommend him.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-thomas-schalow.webp" alt="Thomas Schalow" /></div>
+            <span class="feedback-name">Thomas Schalow</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-thomas-schalow.svg" alt="Thomas Schalow flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro has been very professional and adapting to short deadlines. He is very talented to design landing pages.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-william-bevan.webp" alt="William Bevan" /></div>
+            <span class="feedback-name">William Bevan</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-william-bevan.svg" alt="William Bevan flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">He did a great job. Work with Dmytro was a pleasure for me and I’m definitely gonna work with him in future.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-artur-yuzefovich.webp" alt="Artur Yuzefovich" /></div>
+            <span class="feedback-name">Artur Yuzefovich</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-artur-yuzefovich.svg" alt="Artur Yuzefovich flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Great work designing two mobile app pages, and super quick turnaround. Exactly what I was looking for!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-channing-defoe.webp" alt="Channing Defoe" /></div>
+            <span class="feedback-name">Channing Defoe</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-channing-defoe.svg" alt="Channing Defoe flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dymtro worked fast and communicated clearly with us. We look forward to working with him more!</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-jonathan-denney.webp" alt="Jonathan Denney" /></div>
+            <span class="feedback-name">Jonathan Denney</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-jonathan-denney.svg" alt="Jonathan Denney flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro does fantastic work. I have already hired him more than once. A+</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-kellis-landrum.webp" alt="Kellis Landrum" /></div>
+            <span class="feedback-name">Kellis Landrum</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-kellis-landrum.svg" alt="Kellis Landrum flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Talented Designer! He provided valuable feedback to our mockups.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-lars-weber.webp" alt="Lars Weber" /></div>
+            <span class="feedback-name">Lars Weber</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-lars-weber.svg" alt="Lars Weber flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro is an excellent designer, and I enjoyed working with him.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-shafique-jamal.webp" alt="Shafique Jamal" /></div>
+            <span class="feedback-name">Shafique Jamal</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-shafique-jamal.svg" alt="Shafique Jamal flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Great experience. Our website launched in time and got great feedback! Would love to work together in the near future.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-stan-vanorbeek.webp" alt="Stan Vanorbeek" /></div>
+            <span class="feedback-name">Stan Vanorbeek</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-stan-vanorbeek.svg" alt="Stan Vanorbeek flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro is a great web designer. The design of our news portal has become awesome. I can highly recommend him.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-thomas-schalow.webp" alt="Thomas Schalow" /></div>
+            <span class="feedback-name">Thomas Schalow</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-thomas-schalow.svg" alt="Thomas Schalow flag" /></div>
+        </div>
+      </div>
+      <div class="feedback-card">
+        <div class="feedback-rating">
+          <div class="feedback-stars">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          <img class="star-icon" src="images/star.webp" alt="star" width="24" height="24">
+          </div>
+          <span class="feedback-rating-text">5/5</span>
+        </div>
+
+        <p class="feedback-quote">Dmytro has been very professional and adapting to short deadlines. He is very talented to design landing pages.</p>
+
+        <div class="feedback-footer">
+          <div class="feedback-person">
+            <div class="feedback-avatar"><img src="images/feedback-avatar-william-bevan.webp" alt="William Bevan" /></div>
+            <span class="feedback-name">William Bevan</span>
+          </div>
+          <div class="feedback-flag"><img src="images/flags/feedback-flag-william-bevan.svg" alt="William Bevan flag" /></div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="project">
+    <div class="project-card">
+      <h2 class="project-title">Projects.</h2>
+
+      <div class="pc-list">
+        <article class="pc-case">
+          <div class="pc-image">
+            <img src="images/cases/case-preview-1.webp" alt="Thirdwave case preview" />
+          </div>
+          <div class="pc-content">
+            <div class="pc-badges">
+              <span class="pc-badge">Product Strategy</span>
+              <span class="pc-badge">UX/UI Design</span>
+              <span class="pc-badge">Data Visualization</span>
+              <span class="pc-badge">Design System</span>
+              <span class="pc-badge">Web3 Direction</span>
+            </div>
+            <h3 class="pc-title">Turning Blockchain Data Into Product Intelligence</h3>
+            <p class="pc-subtitle">Designed an analytics platform helping Web3 game studios understand player behavior, community growth, wallet activity, and on-chain performance — all in one workspace.</p>
+            <a class="pc-btn" href="web-app.html"><span>Discover Case</span></a>
+          </div>
+        </article>
+
+        <article class="pc-case">
+          <div class="pc-image">
+            <img src="images/cases/case-preview-2.webp" alt="Raven case preview" />
+          </div>
+          <div class="pc-content">
+            <div class="pc-badges">
+              <span class="pc-badge pc-badge--yellow">Product Positioning</span>
+              <span class="pc-badge pc-badge--yellow">Cybersecurity</span>
+              <span class="pc-badge pc-badge--yellow">B2B Enterprise SaaS</span>
+              <span class="pc-badge pc-badge--yellow">Product Marketing</span>
+              <span class="pc-badge pc-badge--yellow">Information Architecture</span>
+            </div>
+            <h3 class="pc-title">Marketing Website for a Runtime Application Security Platform</h3>
+            <p class="pc-subtitle">Raven is a cybersecurity company building a new category of runtime application security. Their platform protects cloud-native applications by observing what actually happens inside running applications instead of relying solely on signatures or infrastructure-level events.</p>
+            <a class="pc-btn pc-btn--yellow" href="website.html"><span>Discover Case</span></a>
+          </div>
+        </article>
+
+        <article class="pc-case">
+          <div class="pc-image">
+            <img src="images/cases/case-preview-3.webp" alt="Ana Leus Fit case preview" />
+          </div>
+          <div class="pc-content">
+            <div class="pc-badges">
+              <span class="pc-badge pc-badge--red">UX Strategy</span>
+              <span class="pc-badge pc-badge--red">Conversion Design</span>
+              <span class="pc-badge pc-badge--red">UI Design</span>
+              <span class="pc-badge pc-badge--red">Personal Branding</span>
+              <span class="pc-badge pc-badge--red">Responsive Design</span>
+            </div>
+            <h3 class="pc-title">Building Trust Before the First Workout</h3>
+            <p class="pc-subtitle">Designed a high-converting landing page for a personal trainer that combines strong personal branding, credibility, and clear program presentation to turn visitors into clients.</p>
+            <a class="pc-btn pc-btn--red" href="landing-page.html"><span>Discover Case</span></a>
+          </div>
+        </article>
+
+        <article class="pc-case">
+          <div class="pc-image">
+            <img src="images/cases/case-preview-4.webp" alt="Amazing Facts case preview" />
+          </div>
+          <div class="pc-content">
+            <div class="pc-badges">
+              <span class="pc-badge pc-badge--blue">AI Experience</span>
+              <span class="pc-badge pc-badge--blue">Product Strategy</span>
+              <span class="pc-badge pc-badge--blue">UX/UI Design</span>
+              <span class="pc-badge pc-badge--blue">Mobile Design</span>
+              <span class="pc-badge pc-badge--blue">Learning Experience</span>
+            </div>
+            <h3 class="pc-title">Reimagining Bible Study as an AI Conversation</h3>
+            <p class="pc-subtitle">Designed a mobile experience where Scripture is explored through conversations with an AI mentor, combining structured learning paths, personalized guidance, and course progression into a familiar chat interface.</p>
+            <a class="pc-btn pc-btn--blue" href="mobile-app.html"><span>Discover Case</span></a>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+  </div>
+
+  <div class="cta-reveal-stack">
+  <section id="final-cta">
+    <h1 class="final-cta-title">Act!</h1>
+    <a href="https://www.upwork.com/freelancers/dmytrochornohor" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">Hire</a>
+  </section>
+  </div>
+  <!-- ===== TubesCursor: three.js бандл, встроен локально, без внешних CDN ===== -->
+  <script src="js/vendor/three.min.js"></script>
+  <script src="js/background-canvas.js"></script>
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/hero-title-animation.js"></script>
+  <script src="js/vendor/confetti.min.js"></script>
+  <script src="js/confetti-buttons.js"></script>
+  <script src="js/accordion.js"></script>
+  <script src="js/smooth-scroll.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/scroll-recalc.js"></script>
+  <script src="js/marquee-animated.js"></script>
+  <script src="js/marquee-feedbacks.js"></script>
+  <script src="js/side-menu-toggle.js"></script>
+  <script src="js/music-player.js"></script>
+
+</body>
+</html>

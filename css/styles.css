@@ -1,0 +1,2186 @@
+  /* ===== SATOSHI FONT (embedded as base64) ===== */
+  @font-face {
+    font-family: 'Satoshi';
+    src: url(fonts/Satoshi-Light.woff2) format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Satoshi';
+    src: url(fonts/Satoshi-LightItalic.woff2) format('woff2');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Satoshi';
+    src: url(fonts/Satoshi-Regular.woff2) format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Satoshi';
+    src: url(fonts/Satoshi-Italic.woff2) format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Satoshi';
+    src: url(fonts/Satoshi-Medium.woff2) format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Satoshi';
+    src: url(fonts/Satoshi-MediumItalic.woff2) format('woff2');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Satoshi';
+    src: url(fonts/Satoshi-Bold.woff2) format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Satoshi';
+    src: url(fonts/Satoshi-BoldItalic.woff2) format('woff2');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Satoshi';
+    src: url(fonts/Satoshi-Black.woff2) format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Satoshi';
+    src: url(fonts/Satoshi-BlackItalic.woff2) format('woff2');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Satoshi', sans-serif;
+    background: #000;
+    color: #fff;
+  }
+
+  /* Глобальный анимированный фон — один canvas на весь сайт,
+     виден сквозь все секции при скролле (position: fixed).
+     Обёртка нужна потому что библиотека анимации меряет размер
+     по canvas.parentNode.offsetWidth/Height, а не по window —
+     без обёртки canvas "видит" высоту ВСЕЙ страницы (все 6 секций)
+     вместо высоты экрана, и картинка рендерится нечитаемо сплющенной. */
+  #site-canvas-wrap {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  #site-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #000;
+  }
+
+  section {
+    position: relative;
+    z-index: 1;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+  }
+
+  section h1 {
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+  }
+
+  /* Обёртка Hero + About me: задаёт границы, в которых Hero
+     остаётся закреплённой (sticky), пока About me "наезжает" сверху.
+     Высота = 200vh (100vh Hero + 100vh на сам переход) */
+  .sticky-stack {
+    position: relative;
+    height: 200vh;
+  }
+
+  /* Hero — отдельно, ровно 100vh, закреплена (sticky) при скролле,
+     чтобы следующая секция (About me) могла "наехать" на неё сверху */
+  #hero {
+    display: block;
+    height: 100vh;
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    padding-top: 0;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  #hero .hero-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+  }
+
+  .hero-main {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    box-sizing: border-box;
+    padding: 0 96px;
+  }
+
+  .hero-bottom-group {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .hero-chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .hero-chip-label {
+    padding: 3px 8px;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    color: #ffffff;
+    white-space: nowrap;
+  }
+
+  .hero-title {
+    color: #FFF;
+    opacity: 1;
+    text-align: center;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 150px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 100%;
+    letter-spacing: 0px;
+    margin: 0;
+  }
+
+  .hero-title .word {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .hero-title .char {
+    display: inline-block;
+    white-space: pre;
+  }
+
+  /* ===== Hero buttons: Hire / Contacts ===== */
+  .hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-btn {
+    width: 150px;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 26px;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+
+  .hero-btn-primary {
+    background: #55f5f7;
+    color: #000000;
+    border-color: rgba(255, 255, 255, 0.16);
+  }
+
+  .hero-btn-secondary {
+    background: rgba(255, 255, 255, 0.04);
+    color: #ffffff;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* ===== Scroll down indicator ===== */
+  .hero-scroll {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-scroll-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .hero-scroll-stack svg {
+    width: 9px;
+    height: 6px;
+    display: block;
+  }
+
+  .hero-scroll span {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: rgba(255, 255, 255, 0.48);
+    white-space: nowrap;
+  }
+
+  /* ===== NAVBAR (из Figma) ===== */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 48px 96px 0;
+    z-index: 100;
+    box-sizing: border-box;
+  }
+
+  /* Левый аватар */
+  .nav-avatar {
+    width: 48px;
+    height: 48px;
+    display: block;
+    border-radius: 50px;
+    background-size: cover;
+    background-position: center;
+    background-color: lightgray;
+    flex-shrink: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .nav-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Центральные плашки со статистикой */
+  .nav-stats {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-stat {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 240px;
+    padding: 12px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .nav-stat-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+
+  .nav-stat-icon img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .nav-stat-text {
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+  }
+
+  .nav-stat-title {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #ffffff;
+  }
+
+  .nav-stat-subtitle {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #c4cdd5;
+  }
+
+  /* Кнопка меню справа.
+     Состояние 1 (по умолчанию, на Hero): блюр-фон, обводка белая 2px/16%,
+     линии бургера белые.
+     Состояние 2 (навбар на About me и далее — навсегда, см. JS): обводка
+     чёрная той же прозрачности 16%, фон сплошной #64ECF2 (без блюра),
+     линии бургера #113131. */
+  .nav-menu-btn {
+    width: 48px;
+    height: 48px;
+    border: 2px solid rgba(255, 255, 255, 0.16);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-sizing: border-box;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .nav-menu-btn svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+    stroke-width: 2;
+  }
+
+  .nav-menu-btn svg line {
+    stroke: #FFFFFF;
+    transition: stroke 0.3s ease;
+  }
+
+  /* Как только навбар хоть раз коснулся About me (см. JS) — переключаем
+     кнопку на второе состояние НАВСЕГДА (класс on-light больше не
+     снимается назад), даже если проскроллить обратно к Hero. */
+  .navbar.on-light .nav-menu-btn {
+    border-color: rgba(0, 0, 0, 0.16);
+    background: #64ECF2;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .navbar.on-light .nav-menu-btn svg line {
+    stroke: #113131;
+  }
+
+  /* ===== MENU OVERLAY + SIDE MENU ===== */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--transparent-black-48, rgba(0, 0, 0, 0.48));
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+  }
+
+  .menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.3s ease, visibility 0s linear 0s;
+  }
+
+  .side-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 550px;
+    height: 100vh;
+    background: #FFF;
+    z-index: 201;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+  }
+
+  .side-menu-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 1;
+    pointer-events: none;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .side-menu > *:not(.side-menu-bg) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .side-menu.active {
+    transform: translateX(0);
+  }
+
+  /* Верхняя часть меню: аватар слева, крестик справа.
+     Высота ряда совпадает с нав баром (48px), сверху/снизу/по бокам
+     отступ 48px, как указано. */
+  .side-menu-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    padding: 48px 48px 48px;
+    box-sizing: content-box;
+    flex-shrink: 0;
+  }
+
+  /* Кнопка закрытия меню: обводка чёрная 2px/16%, фон сплошной #EBEBEB,
+     крестик #212B36 */
+  .side-menu-close {
+    width: 48px;
+    height: 48px;
+    border: 2px solid rgba(0, 0, 0, 0.16);
+    border-radius: 16px;
+    background: #EBEBEB;
+    box-sizing: border-box;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .side-menu-close svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+    stroke-width: 2;
+  }
+
+  .side-menu-close svg line {
+    stroke: #212B36;
+  }
+
+  .side-menu-middle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+  }
+
+  /* Пункты меню — отступ 16px от краёв контейнера меню слева и справа,
+     между собой отстоят на 8px (без соприкосновения, чтобы тень при
+     ховере не перекрывалась соседними пунктами). */
+  .side-menu-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 16px;
+  }
+
+  .side-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+    padding: 16px 32px;
+    border-radius: 16px;
+    background: var(--Common-White, #FFF);
+    box-shadow: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .side-menu-item:hover,
+  .side-menu-item:focus-visible,
+  .side-menu-item-group:hover .side-menu-item,
+  .side-menu-item-group:focus-within .side-menu-item {
+    border-radius: 16px;
+    background: var(--Common-White, #FFF);
+    /* Shadow/Card */
+    box-shadow: 0 0 2px 0 rgba(145, 158, 171, 0.20), 0 12px 24px -4px rgba(145, 158, 171, 0.12);
+  }
+
+  .side-menu-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    color: var(--Text-Primary, #212B36);
+    transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .side-menu-item-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .side-menu-item-icon svg path {
+    fill: currentColor;
+    opacity: 0.16;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .side-menu-item:hover .side-menu-item-icon,
+  .side-menu-item:focus-visible .side-menu-item-icon,
+  .side-menu-item-group:hover .side-menu-item-icon,
+  .side-menu-item-group:focus-within .side-menu-item-icon {
+    color: var(--Secondary-Main, #3953E5);
+  }
+
+  .side-menu-item:hover .side-menu-item-icon svg path,
+  .side-menu-item:focus-visible .side-menu-item-icon svg path,
+  .side-menu-item-group:hover .side-menu-item-icon svg path,
+  .side-menu-item-group:focus-within .side-menu-item-icon svg path {
+    opacity: 1;
+  }
+
+  .side-menu-item-text {
+    flex: 1;
+    color: var(--Text-Primary, #212B36);
+    /* Desktop/H3 */
+    font-family: 'Satoshi', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 48px; /* 150% */
+  }
+
+  /* Стрелка-экспандер у пункта Portfolio — как в аккордеоне About me */
+  .side-menu-chevron {
+    width: 16px;
+    height: 10px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+  }
+
+  .side-menu-chevron svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .side-menu-item-group:hover .side-menu-chevron,
+  .side-menu-item-group:focus-within .side-menu-chevron {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+
+  /* Обёртка для пункта меню с дропдауном (Portfolio) — дропдаун
+     раскрывается по ховеру на всю группу (сам пункт + список бейджей),
+     чтобы можно было навести курсор на бейджи, не закрывая дропдаун. */
+  .side-menu-item-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .side-menu-dropdown {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .side-menu-item-group:hover .side-menu-dropdown,
+  .side-menu-item-group:focus-within .side-menu-dropdown {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .side-menu-dropdown-inner {
+    overflow: hidden;
+  }
+
+  .side-menu-dropdown-row {
+    display: flex;
+    padding: 12px 32px;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+  }
+
+  .side-menu-badge {
+    display: flex;
+    padding: 4px 8px;
+    align-items: center;
+    gap: 4px;
+    border-radius: 8px;
+    background: var(--transparent-grey-12, rgba(145, 158, 171, 0.12));
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .side-menu-badge span {
+    color: var(--Text-Primary, #212B36);
+    text-align: center;
+    /* Components/ChipLabel */
+    font-family: 'Satoshi', sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px; /* 138.462% */
+    transition: color 0.2s ease;
+  }
+
+  .side-menu-badge:hover {
+    border-radius: 8px;
+    border: 1px solid var(--Secondary-Main, #3953E5);
+    background: var(--Secondary-Main, #3953E5);
+  }
+
+  .side-menu-badge:hover span {
+    color: var(--Secondary-ContrastText, #FFF);
+  }
+
+  /* Нижний блок меню — музыкальный плеер + подпись автора */
+  .side-menu-bottom {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  .music-player-wrap {
+    padding: 18px 18px 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .music-player {
+    display: flex;
+    width: 518px;
+    max-width: 100%;
+    min-width: 0;
+    padding: 24px 32px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    background: var(--Common-White, #FFF);
+    box-shadow: 0 0 2px 0 rgba(145, 158, 171, 0.20), 0 12px 24px -4px rgba(145, 158, 171, 0.12);
+  }
+
+  .music-player-top {
+    min-width: 0;
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .music-player-artist {
+    color: var(--Text-Secondary, #637381);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .music-player-title {
+    color: var(--Text-Secondary, #637381);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+  }
+
+  .music-player-progress {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+  }
+
+  .music-player-progress-track {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: var(--transparent-primary-24, rgba(85, 245, 247, 0.24));
+  }
+
+  .music-player-progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    border-radius: 16px;
+    background: var(--Primary-Main, #55F5F7);
+    pointer-events: none;
+  }
+
+  .music-player-bottom {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .music-player-time {
+    color: var(--Text-Primary, #212B36);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    min-width: 34px;
+  }
+
+  .music-player-time#musicTimeRemaining {
+    text-align: right;
+  }
+
+  .music-player-controls {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .music-player-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #212B36;
+  }
+
+  .music-player-btn--prev svg,
+  .music-player-btn--next svg,
+  .music-player-btn--play svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Подпись автора и год, под плеером */
+  .side-menu-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 48px 30px;
+    margin-top: 24px;
+    box-sizing: border-box;
+  }
+
+  .side-menu-footer-credit,
+  .side-menu-footer-year {
+    color: var(--Text-Secondary, #637381);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+  }
+
+  .side-menu-footer-name {
+    color: var(--Text-Secondary, #637381);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+  }
+
+  /* Адаптив открытого меню + плеера: планшет — сужаем, телефон —
+     на весь экран и с уменьшенными внутренними отступами, чтобы
+     контент физически помещался по ширине. */
+  @media (max-width: 768px) {
+    .side-menu {
+      width: 100%;
+    }
+    .music-player {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .side-menu-top {
+      padding: 24px 20px 24px;
+    }
+    .side-menu-nav {
+      padding: 0 8px;
+    }
+    .music-player-wrap {
+      padding: 16px 12px 0;
+    }
+    .music-player {
+      padding: 16px 20px;
+      gap: 12px;
+    }
+    .side-menu-footer {
+      padding: 0 20px 20px;
+      flex-wrap: wrap;
+    }
+  }
+
+  /* ============================================================
+     ABOUT ME SECTION
+     ============================================================ */
+  #about-me {
+    display: block;
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    min-height: 100vh;
+    padding: 32px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 48px;
+  }
+
+  @media (max-width: 900px) {
+    #about-me {
+      padding: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #about-me {
+      padding: 6px;
+    }
+  }
+
+  .about-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 32px;
+    overflow: hidden;
+    padding-top: 126px;
+    padding-bottom: 126px;
+    padding-left: 63px;
+    padding-right: 63px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 64px;
+  }
+
+  .about-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Фоновый узор внутри карточки (настоящий BG из Figma) */
+  .about-bg-pattern {
+    position: absolute !important;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 1;
+    pointer-events: none;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* ---------- Левая колонка ---------- */
+  .about-left {
+    position: relative;
+    align-self: stretch;
+    height: 100%;
+    flex: 1 1 480px;
+    min-width: 320px;
+  }
+
+  .about-left-top {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    max-width: 640px;
+  }
+
+  .about-title {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 900;
+    font-size: 150px;
+    font-style: normal;
+    line-height: 100%;
+    text-align: left;
+    color: #212B36;
+    opacity: 1;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .about-text {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 24px;
+    color: #637381;
+    margin: 24px 0 0 0;
+    max-width: 637px;
+  }
+
+  .about-cv-btn {
+    margin-top: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    padding: 16px 32px;
+    background: #FB4EF8;
+    border-radius: 16px;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 26px;
+    color: #ffffff;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .about-socials {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    gap: 4px;
+  }
+
+  .about-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: #ffffff;
+    border: 1px solid rgba(145, 158, 171, 0.24);
+    border-radius: 16px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .about-social-btn svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  /* ---------- Правая колонка: аккордеон ---------- */
+  .about-right {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 700px;
+    max-width: 100%;
+    flex: 1 1 420px;
+  }
+
+  .acc-item {
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .acc-header {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    gap: 16px;
+    padding: 16px 32px;
+    border-radius: 16px;
+    cursor: pointer;
+    user-select: none;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+    font: inherit;
+    transition: background 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  /* Открытый пункт — белая карточка с тенью */
+  .acc-item.open .acc-header {
+    background: #ffffff;
+    box-shadow: 0 0 2px 0 rgba(145, 158, 171, 0.20), 0 12px 24px -4px rgba(145, 158, 171, 0.12);
+  }
+
+  .acc-header-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .acc-header-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Иконка неактивного (закрытого) пункта — чёрная 16% */
+  .acc-icon-path {
+    fill: #000000;
+    fill-opacity: 0.16;
+    transition: fill 0.25s ease, fill-opacity 0.25s ease;
+  }
+
+  /* Иконка активного (открытого) пункта — синяя */
+  .acc-item.open .acc-icon-path {
+    fill: #3953E5;
+    fill-opacity: 1;
+  }
+
+  .acc-header-title {
+    flex: 1;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 48px;
+    color: #212B36;
+    white-space: nowrap;
+  }
+
+  .acc-header-chevron {
+    width: 16px;
+    height: 10px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+  }
+
+  .acc-header-chevron svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .acc-item.open .acc-header-chevron {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+
+  .acc-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    padding: 0 32px;
+    transition: grid-template-rows 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .acc-item.open .acc-body {
+    grid-template-rows: 1fr;
+  }
+
+  .acc-body-inner {
+    overflow: hidden;
+    min-height: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: padding 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .acc-item.open .acc-body-inner {
+    padding: 16px 0;
+  }
+
+  .acc-block-label {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #212B36;
+    margin: 0 0 12px 0;
+    white-space: nowrap;
+  }
+
+  .acc-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 4px;
+    align-items: center;
+  }
+
+  .acc-chip-row--values {
+    gap: 8px;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    background: #ffffff;
+    border: 1px solid rgba(145, 158, 171, 0.24);
+    border-radius: 8px;
+  }
+
+  .chip-label {
+    padding: 3px 8px;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    color: #212B36;
+    white-space: nowrap;
+  }
+
+  .chip-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4px;
+  }
+
+  .chip-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .chip-sep {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .chip-sep svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Бейджи в дропдауне Clients */
+  .client-badges {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+    margin-top: 4px;
+  }
+
+  .client-badge {
+    display: flex;
+    padding: 4px 4px 4px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    border-radius: 8px;
+    border: 1px solid rgba(145, 158, 171, 0.24);
+    background: #FFF;
+  }
+
+  .client-badge-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .client-badge-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .client-badge-label {
+    padding: 3px 8px;
+    color: #212B36;
+    text-align: center;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    white-space: nowrap;
+  }
+
+  /* Бейдж без иконки — одинаковый отступ со всех сторон */
+  .client-badge--no-icon {
+    padding: 4px 12px;
+  }
+
+  /* Навбар: на узких экранах плашки со статистикой не помещаются
+     по горизонтали — просто скрываем их изначально */
+  @media (max-width: 1024px) {
+    .navbar {
+      padding: 24px 48px 0;
+    }
+    .nav-stats {
+      display: none;
+    }
+  }
+
+  /* Телефоны: ещё уже — уменьшаем боковые отступы навбара и сам аватар/кнопку */
+  @media (max-width: 480px) {
+    .navbar {
+      padding: 16px 22px 0;
+    }
+    .nav-avatar,
+    .nav-menu-btn {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  /* Адаптив About me */
+  @media (max-width: 1800px) {
+    .about-title,
+    .project-title,
+    .hero-title {
+      font-size: 110px;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .about-title,
+    .project-title,
+    .hero-title {
+      font-size: 80px;
+    }
+    .about-card {
+      padding-top: 126px;
+      padding-bottom: 126px;
+      padding-left: 63px;
+      padding-right: 63px;
+    }
+  }
+
+  /* Начиная с 1193px — About me переходит в мобильный компактный вид:
+     заголовок и подзаголовок по центру, отступ, дропдауны, отступ,
+     кнопка на всю ширину, под ней три оставшиеся соцкнопки.
+
+     Высота секции больше не жёстко 100vh, а МИНИМУМ 100vh (min-height) —
+     то есть меньше 100vh она стать не может, а больше — легко, если
+     открытому дропдауну не хватает места.
+
+     Блок дропдаунов при этом растягивается (flex: 1 1 auto) и
+     центрирует своё содержимое внутри себя (justify-content: center).
+     Гарантированный минимум 32px до текста сверху и до кнопки снизу
+     обеспечивают margin-top: 32px у самих дропдаунов и у кнопки (были
+     и раньше) — а всё оставшееся свободное место, если дропдауны
+     закрыты и общий контент короче 100vh, добавляется поровну и
+     сверху, и снизу от блока дропдаунов (за счёт центрирования внутри
+     выросшего flex-контейнера), так что визуально они остаются на
+     равном расстоянии от текста и от кнопки. */
+  @media (max-width: 1193px) {
+    #about-me {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      min-height: 100vh;
+    }
+    .about-card {
+      flex: 1 1 auto;
+      flex-direction: column;
+      align-items: stretch;
+      padding-top: 64px;
+      padding-bottom: 64px;
+      padding-left: 32px;
+      padding-right: 32px;
+      height: auto;
+      gap: 0;
+    }
+    .about-right {
+      width: 100%;
+      margin-top: 32px;
+      flex: 1 1 auto;
+      justify-content: center;
+    }
+    /* Нужный порядок: заголовок+текст → дропдауны → кнопка на всю ширину
+       → маленькие кнопки соцсетей. В разметке кнопка и соцсети вложены
+       внутрь .about-left, а дропдауны (.about-right) — это отдельный
+       соседний блок, поэтому просто поменять их местами через порядок
+       в коде нельзя. Вместо этого "распускаем" обёртки (display: contents
+       убирает сам блок, оставляя только его содержимое) и расставляем
+       видимый порядок через order — так все элементы становятся
+       равноправными участниками одной колонки. */
+    .about-left,
+    .about-left-top {
+      display: contents;
+    }
+    .about-title,
+    .about-text,
+    .about-cv-btn,
+    .about-socials {
+      position: relative;
+      z-index: 1;
+    }
+    .about-title {
+      order: 1;
+      text-align: center;
+    }
+    .about-text {
+      order: 2;
+      max-width: 100%;
+      text-align: center;
+    }
+    .about-right {
+      order: 3;
+    }
+    .about-cv-btn {
+      order: 4;
+      align-self: stretch;
+      width: 100%;
+      flex-shrink: 0;
+    }
+    .about-socials {
+      order: 5;
+      margin-top: 16px;
+      width: 100%;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .about-title,
+    .project-title,
+    .hero-title {
+      font-size: 56px;
+      white-space: normal;
+    }
+    .acc-header-title {
+      font-size: 24px;
+      line-height: 32px;
+      white-space: normal;
+    }
+    .acc-header {
+      padding: 16px 20px;
+    }
+    .acc-body {
+      padding: 0 20px;
+    }
+    .hero-main {
+      padding: 0 24px;
+    }
+  }
+
+  /* Кнопки Hero — при ширине меньше 498px складываем друг под другом,
+     растягиваем на всю ширину, отступ 22px от краёв экрана (через
+     padding на hero-main — так же выравниваются заголовок и чип) */
+  @media (max-width: 498px) {
+    .hero-main {
+      padding: 0 22px;
+    }
+    .hero-bottom-group {
+      left: 22px;
+      right: 22px;
+      width: auto;
+      transform: none;
+    }
+    .hero-buttons {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      gap: 12px;
+    }
+    .hero-btn {
+      width: 100%;
+    }
+  }
+
+  /* Телефоны: заголовок ещё меньше, кнопки не растягиваются на всю
+     ширину принудительно, но могут перенестись, если не влезают */
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 52px;
+      line-height: 104%;
+    }
+    .hero-main {
+      gap: 16px;
+    }
+    .hero-chip-label {
+      font-size: 12px;
+      white-space: normal;
+      text-align: center;
+    }
+    .hero-bottom-group {
+      bottom: 16px;
+      gap: 24px;
+    }
+  }
+
+  /* Телефоны: About me — плотнее отступы, компактнее аккордеон и соцкнопки */
+  @media (max-width: 480px) {
+    .about-card {
+      padding-top: 32px;
+      padding-bottom: 32px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .about-cv-btn {
+      margin-top: 24px;
+      padding: 14px 24px;
+      font-size: 14px;
+    }
+    .about-social-btn {
+      width: 48px;
+      height: 48px;
+    }
+    .acc-header-title {
+      font-size: 20px;
+      line-height: 28px;
+    }
+    .acc-header {
+      padding: 14px 16px;
+      gap: 12px;
+    }
+    .acc-body {
+      padding: 0 16px;
+    }
+    .acc-header-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  /* ============================================================
+     ANIMATED ELEMENT SECTION — бегущая строка (marquee)
+     ============================================================ */
+  #animated-element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+    padding: 48px 0;
+    overflow: hidden;
+  }
+
+  .marquee-stack {
+    position: relative;
+    width: 100%;
+    height: 220px;
+  }
+
+  .marquee {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 130%;
+    box-sizing: border-box;
+    padding: 24px 0;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .marquee--top {
+    transform: translate(-50%, -50%) rotate(-7deg);
+    z-index: 1;
+  }
+
+  .marquee--bottom {
+    transform: translate(-50%, -50%) rotate(7deg) scaleX(-1);
+    z-index: 2;
+  }
+
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    will-change: transform;
+  }
+
+  /* Полоса зеркалится целиком (см. .marquee--bottom), поэтому каждый
+     отдельный блок текста+иконки внутри неё зеркалим обратно — иначе
+     текст читался бы задом наперёд. Итог: направление движения ленты
+     визуально противоположно верхней, а текст остаётся нормальным */
+  .marquee-track--reverse .marquee-item {
+    transform: scaleX(-1);
+  }
+
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    padding: 12px 24px;
+  }
+
+  .marquee-text {
+    color: #ffffff;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 900;
+    font-size: 72px;
+    line-height: 100%;
+    white-space: nowrap;
+    opacity: 1;
+  }
+
+  .marquee-icon {
+    width: 55px;
+    height: 80px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .marquee-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ============================================================
+     FINAL CTA SECTION
+     Обёртка "залезает" под #project (margin-top: -100vh), поэтому
+     final-cta уже зафиксирована (sticky) НА ВСЁМ протяжении скролла
+     project, и просто становится видна по мере того, как project
+     уезжает вверх — как снятие верхней карты в колоде, а не два
+     раздельных скролла подряд.
+     Высота 300vh = 200vh (стандартный sticky-hold) + 100vh
+     компенсации за отрицательный отступ.
+     ============================================================ */
+  .cta-reveal-stack {
+    position: relative;
+    height: 200vh;
+    margin-top: -100vh;
+  }
+
+  #final-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    height: 100vh;
+    min-height: 100vh;
+    padding: 0 22px;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .final-cta-title {
+    color: #FFFFFF;
+    opacity: 1;
+    text-align: center;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 150px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 100%;
+    margin: 0;
+  }
+
+  @media (max-width: 1800px) {
+    .final-cta-title {
+      font-size: 110px;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .final-cta-title {
+      font-size: 80px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .final-cta-title {
+      font-size: 56px;
+      white-space: normal;
+    }
+  }
+
+  /* ============================================================
+     PROJECT SECTION
+     ============================================================ */
+  #project {
+    display: block;
+    position: relative;
+    z-index: 2;
+    height: auto;
+    min-height: 100vh;
+    padding: 32px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 48px;
+  }
+
+  @media (max-width: 1300px) {
+    #project {
+      padding: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #project {
+      padding: 4px;
+    }
+  }
+
+  .project-card {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: #ffffff url("../images/project-bg.svg") no-repeat center top;
+    background-size: 3500px 1916px;
+    border-radius: 32px;
+    overflow: hidden;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .project-title {
+    position: absolute;
+    top: clamp(32px, 9.56vw, 150px);
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 900;
+    font-size: 150px;
+    font-style: normal;
+    line-height: 100%;
+    text-align: center;
+    color: #212B36;
+    opacity: 1;
+    white-space: nowrap;
+    z-index: 2;
+  }
+
+  @media (max-width: 1800px) {
+    .project-title {
+      font-size: 110px;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .project-title {
+      font-size: 80px;
+    }
+    .project-card {
+      padding: 63px 0;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .project-title {
+      font-size: 56px;
+      white-space: normal;
+    }
+    .project-card {
+      padding: 32px 0;
+    }
+  }
+
+  /* ============================================================
+     PROJECT CASES (новая версия, дизайн под 1920×1080)
+     Отступ от тайтла сверху 120px (считается от низа тайтла на
+     базовых 1920px: top 150 + высота строки 150 + gap 120 = 420px),
+     от краёв секции слева/справа/снизу — 64px. Все размеры плавно
+     уменьшаются на узких экранах через clamp (vw = px/1920*100).
+     ============================================================ */
+  .pc-list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2.5vw, 48px);
+    margin: clamp(140px, 21.875vw, 420px) clamp(16px, 3.333vw, 64px) clamp(16px, 3.333vw, 64px);
+  }
+
+  .pc-case {
+    display: flex;
+    align-items: stretch;
+    gap: clamp(16px, 2.5vw, 48px);
+  }
+
+  .pc-image {
+    position: relative;
+    flex: 1 1 45%;
+    min-width: 0;
+    max-width: 1120px;
+    aspect-ratio: 1000 / 1130;
+    max-height: 650px;
+    border-radius: 32px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .pc-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 32px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+  }
+
+  .pc-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+    display: block;
+  }
+
+  .pc-content {
+    flex: 1 1 320px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .pc-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pc-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--Secondary-Main, #3953E5);
+    background: rgba(57, 83, 229, 0.10);
+    color: #3953E5;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    white-space: nowrap;
+  }
+
+  .pc-badge--yellow {
+    border: 0.5px solid #D2D66C;
+    background: linear-gradient(90deg, rgba(250, 255, 105, 0.15) 0%, rgba(250, 255, 105, 0.09) 100%);
+    color: #9CA039;
+  }
+
+  .pc-badge--red {
+    border: 0.5px solid #FE1646;
+    background: rgba(254, 22, 70, 0.10);
+    color: #FE1646;
+  }
+
+  .pc-badge--blue {
+    border: 0.5px solid #1B63ED;
+    background: rgba(27, 99, 237, 0.10);
+    color: #1B63ED;
+  }
+
+  .pc-title {
+    color: var(--Text-Primary, #212B36);
+    font-family: 'Satoshi', sans-serif;
+    font-size: clamp(28px, 3.333vw, 64px);
+    font-style: normal;
+    font-weight: 900;
+    line-height: 1.25;
+    margin: 24px 0 0 0;
+  }
+
+  .pc-subtitle {
+    color: var(--Text-Secondary, #637381);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 24px 0 0 0;
+    max-width: 640px;
+  }
+
+  .pc-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 48px;
+    padding: 16px 32px;
+    border-radius: 16px;
+    background: var(--Info-Main, #FB4EF8);
+    color: #fff;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px;
+    text-decoration: none;
+    align-self: flex-start;
+  }
+
+  .pc-btn--yellow {
+    background: #FAFF69;
+    color: #212B36;
+  }
+
+  .pc-btn--red {
+    background: #FE1646;
+  }
+
+  .pc-btn--blue {
+    background: #1B63ED;
+  }
+
+  @media (max-width: 1024px) {
+    .pc-case {
+      flex-direction: column;
+    }
+    .pc-image {
+      flex: 0 0 auto;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
+    .pc-subtitle {
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pc-title {
+      font-size: 32px;
+    }
+    .pc-btn {
+      align-self: stretch;
+      justify-content: center;
+    }
+  }
+
+
+  /* ============================================================
+     FEEDBACKS SECTION
+     ============================================================ */
+  #feedbacks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    height: 100vh;
+    min-height: 100vh;
+    padding: 64px 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    z-index: 0;
+  }
+
+  .feedbacks-title {
+    color: #FFF;
+    text-align: center;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 150px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 100%;
+    margin: 0 0 40px 0;
+    padding: 0 24px;
+  }
+
+  /* Лента карточек отзывов — как в Animated element, но без наклона.
+     Базовое (безопасное) направление сдвига — влево. Модификатор
+     --mirror зеркалит всю ленту (и контр-зеркалит каждую карточку,
+     чтобы текст остался читаемым) — визуально это даёт движение вправо,
+     не трогая саму безопасную логику зацикливания */
+  .feedback-marquee {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .feedback-marquee--mirror {
+    transform: scaleX(-1);
+  }
+
+  .feedback-marquee--mirror .feedback-card {
+    transform: scaleX(-1);
+  }
+
+  .feedback-marquee-track {
+    display: flex;
+    align-items: stretch;
+    gap: 24px;
+    width: max-content;
+    will-change: transform;
+    padding: 0 24px;
+  }
+
+  .feedback-card {
+    width: 450px;
+    flex-shrink: 0;
+    padding: 24px;
+    box-sizing: border-box;
+    border-radius: 24px;
+    corner-shape: squircle; /* iOS-подобное сглаживание углов (Chrome/Chromium);
+                               в остальных браузерах — обычный border-radius */
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feedback-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .feedback-stars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .feedback-stars .star-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .feedback-rating-text {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    font-style: normal;
+    line-height: 18px;
+    color: #ffffff;
+    margin-left: 4px;
+  }
+
+  .feedback-quote {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 22px;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .feedback-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .feedback-person {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .feedback-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #8965e0, #55f5f7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: #ffffff;
+    overflow: hidden;
+  }
+
+  .feedback-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .feedback-name {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    font-style: normal;
+    line-height: 28px;
+    color: #DFE3E8;
+    white-space: nowrap;
+  }
+
+  .feedback-quote-mark {
+    flex-shrink: 0;
+    opacity: 0.16;
+  }
+
+  .feedback-quote-mark svg {
+    width: 32px;
+    height: 32px;
+    display: block;
+  }
+
+  /* Флаг страны вместо декоративной кавычки — только в первой ленте */
+  .feedback-flag {
+    flex-shrink: 0;
+  }
+
+  .feedback-flag img {
+    width: 32px;
+    height: 32px;
+    display: block;
+    border-radius: 6px;
+  }
+
+  @media (max-width: 1800px) {
+    .feedbacks-title {
+      font-size: 110px;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .feedbacks-title {
+      font-size: 80px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .feedbacks-title {
+      font-size: 56px;
+    }
+  }
+
+  /* Невысокие экраны (например ноутбук 1536×864) — секции People say
+     не хватало высоты, и низ последней ленты обрезался (#feedbacks
+     закрыт через overflow:hidden). Ужимаем вертикальные отступы и сам
+     заголовок, чтобы все 3 ленты помещались целиком. */
+  @media (max-height: 900px) {
+    .feedbacks-title {
+      font-size: 72px;
+      margin-bottom: 16px;
+    }
+    #feedbacks {
+      padding: 32px 0;
+      gap: 16px;
+    }
+    .feedback-card {
+      padding: 16px;
+      gap: 12px;
+    }
+    .feedback-marquee-track {
+      gap: 16px;
+    }
+  }
+
+

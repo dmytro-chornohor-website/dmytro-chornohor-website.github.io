@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacts — Dmytro Chornohor</title>
+<link rel="icon" type="image/png" href="images/avatar-nav.png">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  /* Эта страница — только хиро-секция, без остальных секций сайта,
+     поэтому убираем эффект "прилипания" (position: sticky) и
+     принудительно ограничиваем высоту 100vh без прокрутки. */
+  html, body {
+    height: 100vh;
+    overflow: hidden;
+  }
+  #hero {
+    position: relative !important;
+    height: 100vh;
+  }
+
+  /* Кнопки соцсетей — тот же стиль "стекла", что и у Contacts
+     (.hero-btn-secondary), но круглые и без текста, только иконка */
+  .contact-social-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .contact-social-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-sizing: border-box;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .contact-social-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .contact-social-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+</style>
+</head>
+<body>
+
+  <div id="site-canvas-wrap">
+    <canvas id="site-canvas"></canvas>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-avatar"><img src="images/avatar-nav.png" alt="Avatar"></a>
+
+    <div class="nav-stats">
+      <div class="nav-stat">
+        <div class="nav-stat-icon"><img src="images/icons/stat-top5.svg" alt="" /></div>
+        <div class="nav-stat-text">
+          <span class="nav-stat-title">Top 5% Rated</span>
+          <span class="nav-stat-subtitle">World class specialist</span>
+        </div>
+      </div>
+
+      <div class="nav-stat">
+        <div class="nav-stat-icon"><img src="images/icons/stat-excellent.svg" alt="" /></div>
+        <div class="nav-stat-text">
+          <span class="nav-stat-title">5/5 Excellent!</span>
+          <span class="nav-stat-subtitle">Based on public reviews</span>
+        </div>
+      </div>
+
+      <div class="nav-stat">
+        <div class="nav-stat-icon"><img src="images/icons/stat-100.svg" alt="" /></div>
+        <div class="nav-stat-text">
+          <span class="nav-stat-title">100%</span>
+          <span class="nav-stat-subtitle">Job Success Score</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- ===== MENU OVERLAY ===== -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- ===== SIDE MENU ===== -->
+  <aside class="side-menu" id="sideMenu">
+    <img class="side-menu-bg" src="images/menu-bg.svg" alt="" />
+    <div class="side-menu-top">
+      <div class="nav-avatar"><img src="images/avatar-menu.png" alt="Avatar"></div>
+      <button class="side-menu-close" id="sideMenuClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round">
+          <line x1="5" y1="5" x2="19" y2="19"/>
+          <line x1="19" y1="5" x2="5" y2="19"/>
+        </svg>
+      </button>
+    </div>
+    <div class="side-menu-middle">
+      <nav class="side-menu-nav">
+        <a href="index.html" class="side-menu-item">
+          <span class="side-menu-item-icon">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M28.6429 12.6428H25.2304L30.4181 8.29352L26.1042 3.14796L19.3573 8.80432V3.35725C19.3573 1.50313 17.8542 0 16.0001 0C14.1458 0 12.6428 1.50313 12.6428 3.35725V6.76973L8.29352 1.58198L3.14796 5.89576L8.80432 12.6427H3.35726C1.50303 12.6427 0 14.1458 0 16C0 17.8541 1.50314 19.3572 3.35726 19.3572H6.76973L1.58199 23.7065L5.89586 28.852L12.6428 23.1957V28.6427C12.6428 30.4969 14.1459 32 16.0001 32C17.8542 32 19.3573 30.4969 19.3573 28.6427V25.2303L23.7066 30.418L28.852 26.1042L23.1957 19.3573H28.6427C30.4969 19.3573 32 17.8542 32 16.0001C32.0001 14.1458 30.4971 12.6428 28.6429 12.6428Z"/>
+            </svg>
+          </span>
+          <span class="side-menu-item-text">Home</span>
+        </a>
+        <div class="side-menu-item-group">
+          <a href="#" class="side-menu-item">
+            <span class="side-menu-item-icon">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M28.6429 12.6428H25.2304L30.4181 8.29352L26.1042 3.14796L19.3573 8.80432V3.35725C19.3573 1.50313 17.8542 0 16.0001 0C14.1458 0 12.6428 1.50313 12.6428 3.35725V6.76973L8.29352 1.58198L3.14796 5.89576L8.80432 12.6427H3.35726C1.50303 12.6427 0 14.1458 0 16C0 17.8541 1.50314 19.3572 3.35726 19.3572H6.76973L1.58199 23.7065L5.89586 28.852L12.6428 23.1957V28.6427C12.6428 30.4969 14.1459 32 16.0001 32C17.8542 32 19.3573 30.4969 19.3573 28.6427V25.2303L23.7066 30.418L28.852 26.1042L23.1957 19.3573H28.6427C30.4969 19.3573 32 17.8542 32 16.0001C32.0001 14.1458 30.4971 12.6428 28.6429 12.6428Z"/>
+              </svg>
+            </span>
+            <span class="side-menu-item-text">Portfolio</span>
+            <span class="side-menu-chevron">
+              <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L8 8L15 1" stroke="#212B36" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+          <div class="side-menu-dropdown">
+            <div class="side-menu-dropdown-inner">
+              <div class="side-menu-dropdown-row">
+                <a href="web-app.html" class="side-menu-badge"><span>Web App</span></a>
+                <a href="landing-page.html" class="side-menu-badge"><span>Landing Page</span></a>
+                <a href="mobile-app.html" class="side-menu-badge"><span>Mobile App</span></a>
+                <a href="website.html" class="side-menu-badge"><span>Website</span></a>
+                <a href="https://www.figma.com/design/6QJQzQvDtjRAGOy8AcCjOW/Portfolio?node-id=50-1100&t=awxdWaJ8cZoBmZIZ-1" target="_blank" rel="noopener" class="side-menu-badge"><span>More Cases</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="contacts.html" class="side-menu-item">
+          <span class="side-menu-item-icon">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.2875 16C-21.4797 16 16 -21.4797 16 18.2875C16 -21.4797 53.4797 16 13.7125 16C53.4797 16 16 53.4797 16 13.7125C16 53.4797 -21.4797 16 18.2875 16Z"/>
+            </svg>
+          </span>
+          <span class="side-menu-item-text">Contacts</span>
+        </a>
+      </nav>
+    </div>
+    <div class="side-menu-bottom">
+      <div class="music-player-wrap">
+      <div class="music-player">
+        <audio id="musicAudio" preload="metadata"></audio>
+
+        <div class="music-player-top">
+          <span class="music-player-artist" id="musicArtist">MondaMusic</span>
+          <span class="music-player-title" id="musicTitle">Lofi Beats</span>
+        </div>
+
+        <div class="music-player-progress" id="musicProgress">
+          <div class="music-player-progress-track"></div>
+          <div class="music-player-progress-fill" id="musicProgressFill"></div>
+        </div>
+
+        <div class="music-player-bottom">
+          <span class="music-player-time" id="musicTimeCurrent">0:00</span>
+
+          <div class="music-player-controls">
+            <button class="music-player-btn music-player-btn--prev" id="musicPrevBtn" aria-label="Previous track">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.4" d="M29.3332 11.1204V20.8804C29.3332 22.8804 27.1598 24.1338 25.4265 23.1338L21.1998 20.6937L16.9732 18.2538L16.3198 17.8804V14.1204L16.9732 13.7471L21.1998 11.3071L25.4265 8.86709C27.1598 7.86709 29.3332 9.12042 29.3332 11.1204Z" fill="black" fill-opacity="0.48"/>
+<path d="M16.3199 11.1204V20.8804C16.3199 22.8804 14.1466 24.1338 12.4266 23.1338L8.18661 20.6937L3.95992 18.2538C2.23992 17.2538 2.23992 14.7471 3.95992 13.7471L8.18661 11.3071L12.4266 8.86709C14.1466 7.86709 16.3199 9.12042 16.3199 11.1204Z" fill="black" fill-opacity="0.48"/>
+</svg>
+            </button>
+
+            <button class="music-player-btn music-player-btn--play" id="musicPlayBtn" aria-label="Play">
+              <svg class="icon-play" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.4" d="M15.9998 29.3337C23.3636 29.3337 29.3332 23.3641 29.3332 16.0003C29.3332 8.63653 23.3636 2.66699 15.9998 2.66699C8.63604 2.66699 2.6665 8.63653 2.6665 16.0003C2.6665 23.3641 8.63604 29.3337 15.9998 29.3337Z" fill="black" fill-opacity="0.48"/>
+<path d="M12.1333 16V14.0267C12.1333 11.48 13.9333 10.4533 16.1333 11.72L17.84 12.7067L19.5466 13.6933C21.7466 14.96 21.7466 17.04 19.5466 18.3067L17.84 19.2933L16.1333 20.28C13.9333 21.5467 12.1333 20.5067 12.1333 17.9733V16Z" fill="black" fill-opacity="0.48"/>
+</svg>
+              <svg class="icon-pause" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+<path opacity="0.4" d="M15.9598 29.3337C23.3236 29.3337 29.2931 23.3641 29.2931 16.0003C29.2931 8.63653 23.3236 2.66699 15.9598 2.66699C8.596 2.66699 2.62646 8.63653 2.62646 16.0003C2.62646 23.3641 8.596 29.3337 15.9598 29.3337Z" fill="black" fill-opacity="0.48"/>
+<path d="M14.2932 20.0397V11.9597C14.2932 11.3197 14.0265 11.0664 13.3465 11.0664H11.6132C10.9332 11.0664 10.6665 11.3197 10.6665 11.9597V20.0397C10.6665 20.6797 10.9332 20.9331 11.6132 20.9331H13.3332C14.0265 20.9331 14.2932 20.6797 14.2932 20.0397Z" fill="black" fill-opacity="0.48"/>
+<path d="M21.3335 20.0397V11.9597C21.3335 11.3197 21.0669 11.0664 20.3869 11.0664H18.6669C17.9869 11.0664 17.7202 11.3197 17.7202 11.9597V20.0397C17.7202 20.6797 17.9869 20.9331 18.6669 20.9331H20.3869C21.0669 20.9331 21.3335 20.6797 21.3335 20.0397Z" fill="black" fill-opacity="0.48"/>
+</svg>
+            </button>
+
+            <button class="music-player-btn music-player-btn--next" id="musicNextBtn" aria-label="Next track">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.4" d="M2.6665 11.1204V20.8804C2.6665 22.8804 4.83983 24.1338 6.57316 23.1338L10.7998 20.6937L15.0265 18.2538L15.6799 17.8804V14.1204L15.0265 13.7471L10.7998 11.3071L6.57316 8.86709C4.83983 7.86709 2.6665 9.12042 2.6665 11.1204Z" fill="black" fill-opacity="0.48"/>
+<path d="M15.6797 11.1204V20.8804C15.6797 22.8804 17.853 24.1338 19.573 23.1338L23.813 20.6937L28.0397 18.2538C29.7597 17.2538 29.7597 14.7471 28.0397 13.7471L23.813 11.3071L19.573 8.86709C17.853 7.86709 15.6797 9.12042 15.6797 11.1204Z" fill="black" fill-opacity="0.48"/>
+</svg>
+            </button>
+          </div>
+
+          <span class="music-player-time" id="musicTimeRemaining">-0:00</span>
+        </div>
+      </div>
+      </div>
+
+      <div class="side-menu-footer">
+        <span class="side-menu-footer-credit">Design &amp; Develop by <a href="https://t.me/sublom" target="_blank" rel="noopener" class="side-menu-footer-name">Dmytro Chornohor</a></span>
+        <span class="side-menu-footer-year">&copy;2026</span>
+      </div>
+    </div>
+  </aside>
+
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-main">
+        <div class="hero-chip">
+          <span class="hero-chip-label">You on the right way</span>
+        </div>
+        <h1 class="hero-title" id="hero-title">You choose!</h1>
+      </div>
+
+      <div class="hero-bottom-group">
+        <div class="contact-social-buttons">
+          <a href="https://www.linkedin.com/in/dmytro-chornohor/" target="_blank" rel="noopener" class="contact-social-btn" aria-label="LinkedIn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_contacts_linkedin)">
+<rect width="24" height="24" rx="5" fill="white"/>
+<path d="M22.2283 0H1.77167C1.30179 0 0.851161 0.186657 0.518909 0.518909C0.186657 0.851161 0 1.30179 0 1.77167V22.2283C0 22.6982 0.186657 23.1488 0.518909 23.4811C0.851161 23.8133 1.30179 24 1.77167 24H22.2283C22.6982 24 23.1488 23.8133 23.4811 23.4811C23.8133 23.1488 24 22.6982 24 22.2283V1.77167C24 1.30179 23.8133 0.851161 23.4811 0.518909C23.1488 0.186657 22.6982 0 22.2283 0ZM7.15333 20.445H3.545V8.98333H7.15333V20.445ZM5.34667 7.395C4.93736 7.3927 4.53792 7.2692 4.19873 7.04009C3.85955 6.81098 3.59584 6.48653 3.44088 6.10769C3.28591 5.72885 3.24665 5.31259 3.32803 4.91145C3.40941 4.51032 3.6078 4.14228 3.89816 3.85378C4.18851 3.56529 4.55782 3.36927 4.95947 3.29046C5.36112 3.21165 5.77711 3.25359 6.15495 3.41099C6.53279 3.56838 6.85554 3.83417 7.08247 4.17481C7.30939 4.51546 7.43032 4.91569 7.43 5.325C7.43386 5.59903 7.38251 5.87104 7.27901 6.1248C7.17551 6.37857 7.02198 6.6089 6.82757 6.80207C6.63316 6.99523 6.40185 7.14728 6.14742 7.24915C5.893 7.35102 5.62067 7.40062 5.34667 7.395ZM20.4533 20.455H16.8467V14.1933C16.8467 12.3467 16.0617 11.7767 15.0483 11.7767C13.9783 11.7767 12.9283 12.5833 12.9283 14.24V20.455H9.32V8.99167H12.79V10.58H12.8367C13.185 9.875 14.405 8.67 16.2667 8.67C18.28 8.67 20.455 9.865 20.455 13.365L20.4533 20.455Z" fill="#0A66C2"/>
+</g>
+<defs>
+<clipPath id="clip0_contacts_linkedin">
+<rect width="24" height="24" rx="5" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+          </a>
+          <a href="https://www.upwork.com/freelancers/dmytrochornohor" target="_blank" rel="noopener" class="contact-social-btn" aria-label="Upwork">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_contacts_upwork)">
+                <path d="M20.4 0H3.6C1.61177 0 0 1.61177 0 3.6V20.4C0 22.3882 1.61177 24 3.6 24H20.4C22.3882 24 24 22.3882 24 20.4V3.6C24 1.61177 22.3882 0 20.4 0Z" fill="#6FDA44"/>
+                <path d="M16.7438 13.9168C15.9469 13.9168 15.1969 13.5793 14.5219 13.0309L14.6859 12.2527L14.6906 12.2246C14.8406 11.3996 15.3047 10.0121 16.7438 10.0121C17.8219 10.0121 18.6984 10.8887 18.6984 11.9668C18.6984 13.0449 17.8219 13.9168 16.7438 13.9168ZM16.7438 8.03398C14.9063 8.03398 13.4859 9.22461 12.9047 11.1887C12.0234 9.86211 11.3531 8.27305 10.9641 6.93242H8.98594V12.0746C8.98594 13.0918 8.16094 13.9168 7.14375 13.9168C6.12656 13.9168 5.30156 13.0918 5.30156 12.0746V6.92773H3.32812V12.0699C3.32812 14.1746 5.03906 15.9043 7.14375 15.9043C9.24844 15.9043 10.9594 14.1746 10.9594 12.0699V11.2074C11.3438 12.009 11.8125 12.8199 12.3844 13.5324L11.175 19.223H13.1953L14.0719 15.098C14.8406 15.5902 15.7219 15.8996 16.7344 15.8996C18.9 15.8996 20.6625 14.1277 20.6625 11.9574C20.6672 9.79648 18.9094 8.03398 16.7438 8.03398Z" fill="white"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_contacts_upwork">
+                  <rect width="24" height="24" rx="5" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+          <a href="https://t.me/sublom" target="_blank" rel="noopener" class="contact-social-btn" aria-label="Telegram">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_contacts_telegram)">
+<rect width="24" height="24" rx="5" fill="url(#paint0_linear_contacts_telegram)"/>
+<path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="url(#paint1_linear_contacts_telegram)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.43177 11.873C8.93001 10.3488 11.2627 9.34403 12.4299 8.85856C15.7624 7.47245 16.4549 7.23167 16.9062 7.22372C17.0055 7.22197 17.2275 7.24657 17.3712 7.36323C17.4926 7.46174 17.526 7.59481 17.542 7.68821C17.558 7.7816 17.5779 7.99436 17.5621 8.16061C17.3815 10.0581 16.6001 14.6628 16.2026 16.788C16.0343 17.6872 15.7031 17.9888 15.3825 18.0183C14.6856 18.0824 14.1564 17.5577 13.4815 17.1153C12.4253 16.423 11.8287 15.992 10.8035 15.3164C9.61872 14.5357 10.3868 14.1066 11.062 13.4053C11.2387 13.2217 14.3091 10.429 14.3685 10.1756C14.3759 10.144 14.3828 10.0258 14.3126 9.96348C14.2425 9.90111 14.1389 9.92244 14.0642 9.9394C13.9583 9.96344 12.271 11.0786 9.00252 13.285C8.52361 13.6138 8.08982 13.7741 7.70117 13.7657C7.2727 13.7564 6.44851 13.5234 5.83582 13.3242C5.08431 13.08 4.48704 12.9508 4.53905 12.5359C4.56614 12.3198 4.86371 12.0989 5.43177 11.873Z" fill="white"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_contacts_telegram" x1="12" y1="0" x2="12" y2="23.822" gradientUnits="userSpaceOnUse">
+<stop stop-color="#2AABEE"/>
+<stop offset="1" stop-color="#229ED9"/>
+</linearGradient>
+<linearGradient id="paint1_linear_contacts_telegram" x1="12" y1="0" x2="12" y2="23.822" gradientUnits="userSpaceOnUse">
+<stop stop-color="#2AABEE"/>
+<stop offset="1" stop-color="#229ED9"/>
+</linearGradient>
+<clipPath id="clip0_contacts_telegram">
+<rect width="24" height="24" rx="5" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/vendor/three.min.js"></script>
+  <script src="js/background-canvas.js"></script>
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/hero-title-animation-contacts.js"></script>
+  <script src="js/side-menu-toggle.js"></script>
+  <script src="js/music-player.js"></script>
+</body>
+</html>

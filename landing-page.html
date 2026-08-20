@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web App — Case | Dmytro Chornohor</title>
+<link rel="icon" type="image/png" href="images/avatar-nav.png">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  /* ===== CASE HERO (Web App) — навбар зафиксирован (position: fixed
+     наследуется от общего .navbar в styles.css) и всегда виден,
+     никуда не уезжает при скролле — двигаться при появлении светлых
+     секций будут только плашки-бейджи (.nav-stats), как на главной.
+     Картинка автоматически занимает все 100vh секции, так как навбар
+     fixed и не забирает место в потоке. ===== */
+  .case-hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar {
+    padding: clamp(16px, calc(8.233px + 2.0712vw), 48px) clamp(22px, calc(4.039px + 4.7896vw), 96px);
+  }
+
+  /* На этой странице в навбаре по центру статистика не нужна —
+     остаются только аватар слева и кнопка меню справа */
+  .navbar .nav-stats {
+    display: none;
+  }
+
+  .case-hero-image {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .case-hero-image img.case-hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .case-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.32);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .case-hero-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180px;
+    max-width: 40%;
+    height: auto;
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+
+  .case-hero-image:hover .case-hero-overlay,
+  .case-hero-image:hover .case-hero-logo {
+    opacity: 1;
+  }
+
+  .case-hero-image:hover .case-hero-logo {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  /* Экраны шире дизайн-макета (1920px) — отступы навбара и логотип
+     на картинке плавно растут вместе с шириной экрана (в vw, тот же
+     процент, что и на базовых 1920px), а не остаются мелкими точками
+     на большом мониторе */
+  @media (min-width: 1920px) {
+    .navbar {
+      padding: 2.5vw 5vw;
+    }
+    .case-hero-logo {
+      width: 9.375vw;
+    }
+  }
+
+  /* ===== CASE OVERVIEW (вторая секция) =====
+     Отступы секции 72px сверху/снизу, 96px по бокам.
+     Внутри — верхний блок (тайтл + сабтайтл + боди) и нижний блок
+     (левая/правая колонки), между ними 100px. */
+  .case-overview {
+    background: #000;
+    padding: clamp(32px, calc(22.291px + 2.589vw), 72px) clamp(22px, calc(4.039px + 4.7896vw), 96px);
+    position: relative;
+    z-index: 1;
+    display: block;
+    min-height: 0;
+  }
+
+  .case-overview-title {
+    color: var(--Common-White, #FFF);
+    font-family: 'Satoshi', sans-serif;
+    font-size: clamp(56px, calc(33.184px + 6.0841vw), 150px);
+    font-style: normal;
+    font-weight: 900;
+    line-height: 100%;
+    margin: 0;
+  }
+
+  .case-overview-subtitle {
+    color: var(--Common-White, #FFF);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    margin: 24px 0 0 0;
+    max-width: 926px;
+  }
+
+  .case-overview-text {
+    color: var(--Grey-200, #F4F6F8);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 22px;
+    margin: 8px 0 0 0;
+    max-width: 926px;
+  }
+
+  .case-overview-second {
+    display: flex;
+    flex-wrap: wrap;
+    /* row-gap (между колонками, когда они стекаются в столбик) и
+       margin-top (между вступительным блоком и этой парой колонок)
+       раньше сходились слишком близко на мобильном (32 vs 40) —
+       теперь внутренний row-gap сжимается сильнее, а внешний
+       margin-top защищён и остаётся заметно больше на любой ширине */
+    gap: clamp(16px, calc(14.058px + 0.5178vw), 24px) clamp(32px, calc(3.359px + 7.6375vw), 150px);
+    margin-top: clamp(48px, calc(35.379px + 3.3657vw), 100px);
+  }
+
+  .case-overview-column {
+    flex: 1 1 600px;
+    max-width: 600px;
+    min-width: 0;
+  }
+
+  .case-overview-column-title {
+    color: var(--Common-White, #FFF);
+    font-family: 'Satoshi', sans-serif;
+    font-size: clamp(32px, calc(28.117px + 1.0356vw), 48px);
+    font-style: normal;
+    font-weight: 900;
+    line-height: clamp(40px, calc(34.175px + 1.5534vw), 64px);
+    margin: 0;
+  }
+
+  .case-overview-column-body {
+    margin-top: 24px;
+  }
+
+  .case-overview-column-body p {
+    color: var(--Grey-200, #F4F6F8);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    width: 600px;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .case-overview-column-body p + p {
+    margin-top: 8px;
+  }
+
+  .case-overview-column-body p.text-2 {
+    font-weight: 400;
+    color: var(--Grey-300, #DFE3E8);
+  }
+
+  /* Большие экраны (шире 1920px) — структурные отступы и крупные
+     заголовки плавно растут вместе с шириной экрана (в vw); текст
+     параграфов остаётся тех же читабельных размеров, как и в
+     остальных местах сайта */
+  @media (min-width: 1920px) {
+    .case-overview {
+      padding: 3.75vw 5vw;
+    }
+    .case-overview-title {
+      font-size: 7.8125vw;
+    }
+    .case-overview-subtitle {
+      margin-top: 1.25vw;
+    }
+    .case-overview-text {
+      margin-top: 0.4167vw;
+    }
+    .case-overview-second {
+      gap: 1.25vw 7.8125vw;
+      margin-top: 5.2083vw;
+    }
+    .case-overview-column-title {
+      font-size: 2.5vw;
+      line-height: 3.3333vw;
+    }
+    .case-overview-column-body {
+      margin-top: 1.25vw;
+    }
+  }
+
+  /* ===== ROLE / PRODUCT SECTION (третья секция) =====
+     Внешняя "рамка" — стеклянный бордер 32px вокруг белой панели.
+     Сама панель — белый фон + едва заметная текстура поверх,
+     внутренние отступы 100px сверху/снизу, 64px по бокам.
+     Внутри — два ряда по два блока (600px каждый блок), между
+     рядами 100px, между блоками в ряду 150px. */
+  .role-frame {
+    padding: clamp(12px, calc(7.146px + 1.2945vw), 32px);
+    border-radius: 48px;
+    background: rgba(0, 0, 0, 0);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1;
+    display: block;
+    min-height: 0;
+  }
+
+  .role-panel {
+    border-radius: 16px;
+    background: #fff url('images/about-bg-texture.svg') no-repeat center center / cover;
+    padding: clamp(40px, calc(25.437px + 3.8835vw), 100px) clamp(22px, calc(11.806px + 2.7184vw), 64px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .role-row {
+    display: flex;
+    flex-wrap: wrap;
+    /* та же поправка по шкале, что и в case-overview-second: внутренний
+       row-gap сжат сильнее, внешний margin-top между рядами защищён */
+    gap: clamp(16px, calc(14.058px + 0.5178vw), 24px) clamp(32px, calc(3.359px + 7.6375vw), 150px);
+  }
+
+  .role-row + .role-row {
+    margin-top: clamp(48px, calc(35.379px + 3.3657vw), 100px);
+  }
+
+  .role-col {
+    flex: 1 1 600px;
+    max-width: 600px;
+    min-width: 0;
+  }
+
+  .role-col-title {
+    color: var(--Text-Primary, #212B36);
+    font-family: 'Satoshi', sans-serif;
+    font-size: clamp(32px, calc(28.117px + 1.0356vw), 48px);
+    font-style: normal;
+    font-weight: 900;
+    line-height: clamp(40px, calc(34.175px + 1.5534vw), 64px);
+    margin: 0;
+  }
+
+  .role-col-body {
+    margin-top: 24px;
+  }
+
+  .role-text {
+    color: var(--Text-Secondary, #637381);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0;
+  }
+
+  .role-text + .role-text {
+    margin-top: 8px;
+  }
+
+  .role-text--spaced {
+    margin-top: 16px !important;
+  }
+
+  .role-text--regular {
+    font-weight: 400;
+    color: var(--Text-Secondary, #637381);
+  }
+
+  .role-subhead {
+    color: var(--Text-Primary, #212B36);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    margin: 0;
+  }
+
+  .role-sub-block + .role-sub-block {
+    margin-top: 16px;
+  }
+
+  .role-sub-block .role-text {
+    margin-top: 8px;
+  }
+
+  .role-chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    margin-top: 16px;
+  }
+
+  .role-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 12px;
+    border-radius: 8px;
+    background: var(--transparent-secondary-16, rgba(57, 83, 229, 0.16));
+    color: var(--components-dark-light-secondary, #5119B7);
+    /* Components/ChipLabel */
+    font-family: 'Satoshi', sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    white-space: nowrap;
+  }
+
+  .role-chip--check {
+    padding-left: 6px;
+    gap: 6px;
+    white-space: normal;
+  }
+
+  .role-chip--check img {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 1920px) {
+    .role-frame {
+      padding: 1.6667vw;
+    }
+    .role-panel {
+      padding: 5.2083vw 3.3333vw;
+    }
+    .role-row + .role-row {
+      margin-top: 5.2083vw;
+    }
+    .role-row {
+      gap: 1.25vw 7.8125vw;
+    }
+    .role-col-title {
+      font-size: 2.5vw;
+      line-height: 3.3333vw;
+    }
+    .role-col-body {
+      margin-top: 1.25vw;
+    }
+  }
+
+  /* ===== DEEP DIVE (четвёртая секция) =====
+     Чёрный фон, отступы 68px сверху/снизу, 96px по бокам.
+     Внутри два блока друг под другом (100px между ними), в каждом
+     блоке — левая и правая колонки (по 600px). */
+  .deep-dive {
+    background: #000;
+    padding: clamp(32px, calc(23.262px + 2.3301vw), 68px) clamp(22px, calc(4.039px + 4.7896vw), 96px);
+    position: relative;
+    z-index: 1;
+    display: block;
+    min-height: 0;
+  }
+
+  .dd-block + .dd-block {
+    margin-top: clamp(48px, calc(35.379px + 3.3657vw), 100px);
+  }
+
+  .dd-row {
+    display: flex;
+    flex-wrap: wrap;
+    /* та же поправка по шкале: row-gap между стекшимися колонками
+       сжат сильнее, внешний margin-top между блоками защищён */
+    gap: clamp(16px, calc(14.058px + 0.5178vw), 24px) clamp(32px, calc(3.359px + 7.6375vw), 150px);
+  }
+
+  .dd-col {
+    flex: 1 1 600px;
+    max-width: 600px;
+    min-width: 0;
+  }
+
+  /* Левая колонка первого блока — не растёт на десктопе (отдаёт
+     лишнее место правой широкой колонке), но теперь умеет сжиматься
+     ниже 600px вместо жёсткого flex: 0 0, поэтому отдельный
+     брейкпоинт-фикс для узких экранов больше не нужен */
+  .dd-row--split .dd-col {
+    flex: 1 1 480px;
+    max-width: 600px;
+  }
+
+  /* Правая колонка первого блока — забирает всё оставшееся место
+     (внутри неё три подблока по 400px в ряд) */
+  .dd-col--wide {
+    flex: 1 1 480px;
+    max-width: 1296px;
+    min-width: 0;
+  }
+
+  .dd-title {
+    color: var(--Common-White, #FFF);
+    font-family: 'Satoshi', sans-serif;
+    font-size: clamp(32px, calc(28.117px + 1.0356vw), 48px);
+    font-style: normal;
+    font-weight: 900;
+    line-height: clamp(40px, calc(34.175px + 1.5534vw), 64px);
+    margin: 0;
+  }
+
+  .dd-title2 {
+    color: var(--Common-White, #FFF);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    margin: 0;
+  }
+
+  .dd-col-body {
+    margin-top: 24px;
+  }
+
+  .dd-body {
+    color: var(--Grey-200, #F4F6F8);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0;
+  }
+
+  .dd-body + .dd-body {
+    margin-top: 8px;
+  }
+
+  .dd-body2 {
+    color: var(--Grey-300, #DFE3E8);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 8px 0 0 0;
+  }
+
+  .dd-gap-8 {
+    margin-top: 8px;
+  }
+
+  .dd-gap-12 {
+    margin-top: 12px;
+  }
+
+  .dd-gap-16 {
+    margin-top: 16px;
+  }
+
+  /* Бейджи со сплошным синим фоном + иконка-разделитель между ними */
+  .dd-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dd-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--Secondary-Main, #3953E5);
+    background: var(--Secondary-Main, #3953E5);
+    color: #fff;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    white-space: nowrap;
+  }
+
+  .deep-dive .role-chip {
+    border: 1px solid var(--Secondary-Main, #3953E5);
+    background: var(--Secondary-Main, #3953E5);
+    color: #fff;
+  }
+
+  .dd-badge-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .dd-badge-icon img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* Три подблока в ряд (400px каждый), на равном расстоянии */
+  .dd-trio {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(16px, calc(8.233px + 2.0712vw), 48px);
+  }
+
+  .dd-trio-item {
+    flex: 1 1 0;
+    max-width: 400px;
+    min-width: 140px;
+  }
+
+  @media (min-width: 1920px) {
+    .deep-dive {
+      padding: 3.5417vw 5vw;
+    }
+    .dd-block + .dd-block {
+      margin-top: 5.2083vw;
+    }
+    .dd-row {
+      gap: 1.25vw 7.8125vw;
+    }
+    .dd-title {
+      font-size: 2.5vw;
+      line-height: 3.3333vw;
+    }
+    .dd-col-body {
+      margin-top: 1.25vw;
+    }
+    .dd-col--wide {
+      max-width: 67.5vw;
+    }
+    .dd-trio {
+      gap: 2.5vw;
+    }
+  }
+
+  /* dd-trio-item остаётся на брейкпоинтах: это не плавное сжатие,
+     а смена макета (3 колонки → строчный набор → стек в 1 колонку) */
+  @media (max-width: 1400px) {
+    .dd-trio-item {
+      flex-basis: 260px;
+      max-width: 320px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .dd-trio-item {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+  }
+
+  /* ===== FINAL BLOCK (внутри пятой секции) =====
+     Два блока (левый/правый) по 600px, ниже — кнопка по центру
+     на расстоянии 64px */
+  .final-row {
+    display: flex;
+    flex-wrap: wrap;
+    /* row-gap теперь тоже плавный (раньше был статичным 24px) — иначе
+       на мобильном он остаётся почти равным margin-top кнопки ниже */
+    gap: clamp(16px, calc(14.058px + 0.5178vw), 24px) clamp(32px, calc(3.359px + 7.6375vw), 150px);
+  }
+
+  .final-col {
+    flex: 1 1 600px;
+    max-width: 600px;
+    min-width: 0;
+  }
+
+  .final-title {
+    color: var(--Text-Primary, #212B36);
+    font-family: 'Satoshi', sans-serif;
+    font-size: clamp(32px, calc(28.117px + 1.0356vw), 48px);
+    font-style: normal;
+    font-weight: 900;
+    line-height: clamp(40px, calc(34.175px + 1.5534vw), 64px);
+    margin: 0;
+  }
+
+  .final-subtitle {
+    color: var(--Text-Secondary, #637381);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 24px 0 0 0;
+  }
+
+  .final-subtitle + .final-subtitle {
+    margin-top: 8px;
+  }
+
+  .final-btn-wrap {
+    display: flex;
+    justify-content: flex-start;
+    /* защищаем внешний отступ до кнопки — на мобильном он должен
+       заметно превышать внутренний row-gap ряда выше (16px) */
+    margin-top: clamp(40px, calc(34.175px + 1.5534vw), 64px);
+  }
+
+  .final-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 48px;
+    border-radius: 16px;
+    background: var(--Info-Main, #FB4EF8);
+    color: #fff;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 26px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+
+  @media (min-width: 1920px) {
+    .final-row {
+      gap: 1.25vw 7.8125vw;
+    }
+    .final-title {
+      font-size: 2.5vw;
+      line-height: 3.3333vw;
+    }
+    .final-subtitle {
+      margin-top: 1.25vw;
+    }
+    .final-btn-wrap {
+      margin-top: 3.3333vw;
+    }
+  }
+
+  /* Кнопка на всю ширину на мобильном — сознательное решение по UX
+     (удобная область нажатия), не часть плавного масштабирования */
+  @media (max-width: 480px) {
+    .final-btn {
+      width: 100%;
+    }
+  }
+
+  /* ===== CASES (шестая секция) =====
+     Отступы 72px сверху, 16px по бокам, 150px снизу.
+     4 карточки кейсов в ряд, 32px между ними. */
+  .cases-section {
+    background: #000;
+    padding: clamp(48px, calc(42.175px + 1.5534vw), 72px) clamp(16px, calc(12.117px + 1.0356vw), 32px) clamp(96px, calc(82.893px + 3.4951vw), 150px);
+    position: relative;
+    z-index: 1;
+    display: block;
+    min-height: 0;
+  }
+
+  /* Grid с auto-fit сама решает, сколько карточек влезает в ряд —
+     колонки плавно перестраиваются (4 → 3 → 2 → 1) вместе с шириной
+     экрана, без отдельных брейкпоинтов на количество карточек */
+  .cases-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(24px, calc(22.058px + 0.5178vw), 32px);
+  }
+
+  .case-card-image {
+    width: 100%;
+    aspect-ratio: 17 / 10;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #111;
+  }
+
+  .case-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .case-card-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 32px;
+  }
+
+  .case-card-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 12px;
+    border-radius: 8px;
+    border: 0.5px solid #61631B;
+    background: linear-gradient(90deg, rgba(250, 255, 105, 0.15) 0%, rgba(250, 255, 105, 0.09) 100%);
+    color: var(--Secondary-ContrastText, #FFF);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    white-space: nowrap;
+  }
+
+  .case-card-chip--red {
+    border: 0.5px solid #FE1646;
+    background: rgba(254, 22, 70, 0.10);
+  }
+
+  .case-card-chip--blue {
+    border: 0.5px solid #1B63ED;
+    background: rgba(27, 99, 237, 0.10);
+  }
+
+  .case-card-title {
+    color: #fff;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    margin: 12px 0 0 0;
+  }
+
+  .case-card-btn-wrap {
+    margin-top: 32px;
+  }
+
+  .case-card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 48px;
+    border-radius: 16px;
+    background: #FAFF69;
+    color: var(--Warning-ContrastText, #212B36);
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 26px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .case-card-btn--red {
+    background: #FE1646;
+    color: #FFFFFF;
+  }
+
+  .case-card-btn--blue {
+    background: #1B63ED;
+    color: #FFFFFF;
+  }
+
+  .case-card-btn--pink {
+    background: var(--Info-Main, #FB4EF8);
+    color: #FFFFFF;
+  }
+
+  @media (min-width: 1920px) {
+    .cases-section {
+      padding: 3.75vw 1.6667vw 7.8125vw;
+    }
+    .cases-row {
+      gap: 1.6667vw;
+    }
+    .case-card-chips {
+      margin-top: 1.6667vw;
+    }
+    .case-card-btn-wrap {
+      margin-top: 1.6667vw;
+    }
+  }
+
+  /* ===== BOTTOM BAR (седьмая секция) — тонкая полупрозрачная полоса
+     снизу страницы, 1920px шириной, отступы 16/48, тексты как в
+     боковом меню (Design & Develop / год), только белые */
+  .bottom-bar {
+    display: flex;
+    width: 100%;
+    padding: 16px clamp(22px, calc(15.689px + 1.6828vw), 48px);
+    justify-content: space-between;
+    align-items: center;
+    background: #1F1F1F;
+    box-sizing: border-box;
+  }
+
+  .bottom-bar-credit,
+  .bottom-bar-year {
+    color: #fff;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+  }
+
+  .bottom-bar-name {
+    color: #fff;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+  }
+
+  @media (max-width: 640px) {
+    .bottom-bar {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar on-light">
+    <a href="index.html" class="nav-avatar"><img src="images/avatar-nav.png" alt="Avatar"></a>
+
+    <div class="nav-stats">
+      <div class="nav-stat">
+        <div class="nav-stat-icon"><img src="images/icons/stat-top5.svg" alt="" /></div>
+        <div class="nav-stat-text">
+          <span class="nav-stat-title">Top 5% Rated</span>
+          <span class="nav-stat-subtitle">World class specialist</span>
+        </div>
+      </div>
+
+      <div class="nav-stat">
+        <div class="nav-stat-icon"><img src="images/icons/stat-excellent.svg" alt="" /></div>
+        <div class="nav-stat-text">
+          <span class="nav-stat-title">5/5 Excellent!</span>
+          <span class="nav-stat-subtitle">Based on public reviews</span>
+        </div>
+      </div>
+
+      <div class="nav-stat">
+        <div class="nav-stat-icon"><img src="images/icons/stat-100.svg" alt="" /></div>
+        <div class="nav-stat-text">
+          <span class="nav-stat-title">100%</span>
+          <span class="nav-stat-subtitle">Job Success Score</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- ===== MENU OVERLAY ===== -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- ===== SIDE MENU ===== -->
+  <aside class="side-menu" id="sideMenu">
+    <img class="side-menu-bg" src="images/menu-bg.svg" alt="" />
+    <div class="side-menu-top">
+      <div class="nav-avatar"><img src="images/avatar-menu.png" alt="Avatar"></div>
+      <button class="side-menu-close" id="sideMenuClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round">
+          <line x1="5" y1="5" x2="19" y2="19"/>
+          <line x1="19" y1="5" x2="5" y2="19"/>
+        </svg>
+      </button>
+    </div>
+    <div class="side-menu-middle">
+      <nav class="side-menu-nav">
+        <a href="index.html" class="side-menu-item">
+          <span class="side-menu-item-icon">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M32 8C32 3.58172 28.4183 0 24 0C20.6887 0 17.8473 2.01192 16.6313 4.88001H15.3687C14.1527 2.01192 11.3113 0 7.99997 0C3.58171 0 0 3.58172 0 8C0 11.1551 1.82667 13.8832 4.47994 15.1855V16.8146C1.82667 18.1168 0 20.8449 0 24C0 28.4183 3.58171 32 7.99997 32C11.155 32 13.8831 30.1733 15.1854 27.52H16.8146C18.1168 30.1733 20.8449 32 24 32C28.4183 32 32 28.4183 32 24C32 20.8449 30.1733 18.1168 27.5201 16.8146V15.1855C30.1733 13.8832 32 11.1551 32 8ZM15.1855 20.48C14.4046 18.889 13.1111 17.5954 11.5201 16.8145V15.1854C12.9756 14.471 14.1821 13.3276 14.9749 11.9199H17.0252C17.8181 13.3275 19.0245 14.471 20.48 15.1854V16.8145C18.889 17.5954 17.5955 18.889 16.8146 20.48H15.1855Z"/>
+            </svg>
+          </span>
+          <span class="side-menu-item-text">Home</span>
+        </a>
+        <div class="side-menu-item-group">
+          <a href="#" class="side-menu-item">
+            <span class="side-menu-item-icon">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M28.6429 12.6428H25.2304L30.4181 8.29352L26.1042 3.14796L19.3573 8.80432V3.35725C19.3573 1.50313 17.8542 0 16.0001 0C14.1458 0 12.6428 1.50313 12.6428 3.35725V6.76973L8.29352 1.58198L3.14796 5.89576L8.80432 12.6427H3.35726C1.50303 12.6427 0 14.1458 0 16C0 17.8541 1.50314 19.3572 3.35726 19.3572H6.76973L1.58199 23.7065L5.89586 28.852L12.6428 23.1957V28.6427C12.6428 30.4969 14.1459 32 16.0001 32C17.8542 32 19.3573 30.4969 19.3573 28.6427V25.2303L23.7066 30.418L28.852 26.1042L23.1957 19.3573H28.6427C30.4969 19.3573 32 17.8542 32 16.0001C32.0001 14.1458 30.4971 12.6428 28.6429 12.6428Z"/>
+              </svg>
+            </span>
+            <span class="side-menu-item-text">Portfolio</span>
+            <span class="side-menu-chevron">
+              <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L8 8L15 1" stroke="#212B36" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+          <div class="side-menu-dropdown">
+            <div class="side-menu-dropdown-inner">
+              <div class="side-menu-dropdown-row">
+                <a href="web-app.html" class="side-menu-badge"><span>Web App</span></a>
+                <a href="landing-page.html" class="side-menu-badge"><span>Landing Page</span></a>
+                <a href="mobile-app.html" class="side-menu-badge"><span>Mobile App</span></a>
+                <a href="website.html" class="side-menu-badge"><span>Website</span></a>
+                <a href="https://www.figma.com/design/6QJQzQvDtjRAGOy8AcCjOW/Portfolio?node-id=50-1100&t=awxdWaJ8cZoBmZIZ-1" target="_blank" rel="noopener" class="side-menu-badge"><span>More Cases</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="contacts.html" class="side-menu-item">
+          <span class="side-menu-item-icon">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.2875 16C-21.4797 16 16 -21.4797 16 18.2875C16 -21.4797 53.4797 16 13.7125 16C53.4797 16 16 53.4797 16 13.7125C16 53.4797 -21.4797 16 18.2875 16Z"/>
+            </svg>
+          </span>
+          <span class="side-menu-item-text">Contacts</span>
+        </a>
+      </nav>
+    </div>
+    <div class="side-menu-bottom">
+      <div class="music-player-wrap">
+      <div class="music-player">
+        <audio id="musicAudio" preload="metadata"></audio>
+
+        <div class="music-player-top">
+          <span class="music-player-artist" id="musicArtist">MondaMusic</span>
+          <span class="music-player-title" id="musicTitle">Lofi Beats</span>
+        </div>
+
+        <div class="music-player-progress" id="musicProgress">
+          <div class="music-player-progress-track"></div>
+          <div class="music-player-progress-fill" id="musicProgressFill"></div>
+        </div>
+
+        <div class="music-player-bottom">
+          <span class="music-player-time" id="musicTimeCurrent">0:00</span>
+
+          <div class="music-player-controls">
+            <button class="music-player-btn music-player-btn--prev" id="musicPrevBtn" aria-label="Previous track">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.4" d="M29.3332 11.1204V20.8804C29.3332 22.8804 27.1598 24.1338 25.4265 23.1338L21.1998 20.6937L16.9732 18.2538L16.3198 17.8804V14.1204L16.9732 13.7471L21.1998 11.3071L25.4265 8.86709C27.1598 7.86709 29.3332 9.12042 29.3332 11.1204Z" fill="black" fill-opacity="0.48"/>
+<path d="M16.3199 11.1204V20.8804C16.3199 22.8804 14.1466 24.1338 12.4266 23.1338L8.18661 20.6937L3.95992 18.2538C2.23992 17.2538 2.23992 14.7471 3.95992 13.7471L8.18661 11.3071L12.4266 8.86709C14.1466 7.86709 16.3199 9.12042 16.3199 11.1204Z" fill="black" fill-opacity="0.48"/>
+</svg>
+            </button>
+
+            <button class="music-player-btn music-player-btn--play" id="musicPlayBtn" aria-label="Play">
+              <svg class="icon-play" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.4" d="M15.9998 29.3337C23.3636 29.3337 29.3332 23.3641 29.3332 16.0003C29.3332 8.63653 23.3636 2.66699 15.9998 2.66699C8.63604 2.66699 2.6665 8.63653 2.6665 16.0003C2.6665 23.3641 8.63604 29.3337 15.9998 29.3337Z" fill="black" fill-opacity="0.48"/>
+<path d="M12.1333 16V14.0267C12.1333 11.48 13.9333 10.4533 16.1333 11.72L17.84 12.7067L19.5466 13.6933C21.7466 14.96 21.7466 17.04 19.5466 18.3067L17.84 19.2933L16.1333 20.28C13.9333 21.5467 12.1333 20.5067 12.1333 17.9733V16Z" fill="black" fill-opacity="0.48"/>
+</svg>
+              <svg class="icon-pause" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+<path opacity="0.4" d="M15.9598 29.3337C23.3236 29.3337 29.2931 23.3641 29.2931 16.0003C29.2931 8.63653 23.3236 2.66699 15.9598 2.66699C8.596 2.66699 2.62646 8.63653 2.62646 16.0003C2.62646 23.3641 8.596 29.3337 15.9598 29.3337Z" fill="black" fill-opacity="0.48"/>
+<path d="M14.2932 20.0397V11.9597C14.2932 11.3197 14.0265 11.0664 13.3465 11.0664H11.6132C10.9332 11.0664 10.6665 11.3197 10.6665 11.9597V20.0397C10.6665 20.6797 10.9332 20.9331 11.6132 20.9331H13.3332C14.0265 20.9331 14.2932 20.6797 14.2932 20.0397Z" fill="black" fill-opacity="0.48"/>
+<path d="M21.3335 20.0397V11.9597C21.3335 11.3197 21.0669 11.0664 20.3869 11.0664H18.6669C17.9869 11.0664 17.7202 11.3197 17.7202 11.9597V20.0397C17.7202 20.6797 17.9869 20.9331 18.6669 20.9331H20.3869C21.0669 20.9331 21.3335 20.6797 21.3335 20.0397Z" fill="black" fill-opacity="0.48"/>
+</svg>
+            </button>
+
+            <button class="music-player-btn music-player-btn--next" id="musicNextBtn" aria-label="Next track">
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.4" d="M2.6665 11.1204V20.8804C2.6665 22.8804 4.83983 24.1338 6.57316 23.1338L10.7998 20.6937L15.0265 18.2538L15.6799 17.8804V14.1204L15.0265 13.7471L10.7998 11.3071L6.57316 8.86709C4.83983 7.86709 2.6665 9.12042 2.6665 11.1204Z" fill="black" fill-opacity="0.48"/>
+<path d="M15.6797 11.1204V20.8804C15.6797 22.8804 17.853 24.1338 19.573 23.1338L23.813 20.6937L28.0397 18.2538C29.7597 17.2538 29.7597 14.7471 28.0397 13.7471L23.813 11.3071L19.573 8.86709C17.853 7.86709 15.6797 9.12042 15.6797 11.1204Z" fill="black" fill-opacity="0.48"/>
+</svg>
+            </button>
+          </div>
+
+          <span class="music-player-time" id="musicTimeRemaining">-0:00</span>
+        </div>
+      </div>
+      </div>
+
+      <div class="side-menu-footer">
+        <span class="side-menu-footer-credit">Design &amp; Develop by <a href="https://t.me/sublom" target="_blank" rel="noopener" class="side-menu-footer-name">Dmytro Chornohor</a></span>
+        <span class="side-menu-footer-year">&copy;2026</span>
+      </div>
+    </div>
+  </aside>
+
+  <section class="case-hero">
+    <div class="case-hero-image">
+      <img class="case-hero-photo" src="images/cases/case-hero-landing-page.webp" alt="Landing Page case preview" />
+      <div class="case-hero-overlay"></div>
+      <img class="case-hero-logo" src="images/logos/case-logo-landing-page.svg" alt="Client logo" />
+    </div>
+  </section>
+
+  <!-- ===== CASE OVERVIEW ===== -->
+  <section class="case-overview">
+    <div class="case-overview-first">
+      <h2 class="case-overview-title">Case Overview</h2>
+      <p class="case-overview-subtitle">This project focused on designing a landing page for a personal fitness trainer whose primary goal was converting visitors into paying clients.</p>
+      <p class="case-overview-text">Unlike traditional portfolio websites, the experience needed to establish credibility within seconds, communicate expertise, and guide users naturally toward booking a consultation or purchasing a training program.</p>
+      <p class="case-overview-text">The design balances bold visual branding with structured content, ensuring every section builds confidence before presenting a call-to-action.</p>
+    </div>
+
+    <div class="case-overview-second">
+      <div class="case-overview-column">
+        <h3 class="case-overview-column-title">The Goal</h3>
+        <div class="case-overview-column-body">
+          <div class="dd-badges dd-gap-8">
+            <span class="dd-badge">Build trust within the first screen</span>
+            <span class="dd-badge">Increase consultation requests</span>
+            <span class="dd-badge">Highlight trainer credibility</span>
+            <span class="dd-badge">Present training programs clearly</span>
+            <span class="dd-badge">Showcase social proof</span>
+            <span class="dd-badge">Create a memorable personal brand</span>
+            <span class="dd-badge">Maintain strong visual hierarchy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-overview-column">
+        <h3 class="case-overview-column-title">Challenge</h3>
+        <div class="case-overview-column-body">
+          <p class="text-2">Visitors make decisions quickly when choosing a personal trainer.</p>
+          <p>The website needed to answer the most important questions immediately:</p>
+          <div class="dd-badges dd-gap-8">
+            <span class="dd-badge">Can I trust this trainer?</span>
+            <span class="dd-badge">Are they qualified?</span>
+            <span class="dd-badge">What results can I expect?</span>
+            <span class="dd-badge">Which program fits me?</span>
+            <span class="dd-badge">How do I get started?</span>
+          </div>
+          <p class="text-2" style="margin-top: 16px;">The challenge was creating a page that feels energetic and motivational without becoming visually overwhelming.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ROLE / PRODUCT ===== -->
+    <section class="role-frame">
+    <div class="role-panel">
+
+      <div class="role-row">
+        <div class="role-col">
+          <h2 class="role-col-title">My Role</h2>
+          <div class="role-col-body">
+            <p class="role-text role-text--regular">Product &amp; UI/UX Designer</p>
+            <div class="role-chips">
+              <span class="role-chip">UX Strategy</span>
+              <span class="role-chip">Information Architecture</span>
+              <span class="role-chip">Landing Page Design</span>
+              <span class="role-chip">Personal Branding</span>
+              <span class="role-chip">Conversion Optimization</span>
+              <span class="role-chip">Responsive Design</span>
+              <span class="role-chip">UI System</span>
+              <span class="role-chip">Developer Handoff</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="role-col">
+          <h2 class="role-col-title">Design Thinking</h2>
+          <div class="role-col-body">
+            <p class="role-text role-text--regular">Rather than treating the page as a traditional website, I designed it as a conversion funnel.</p>
+            <p class="role-text">Each section answers the visitor&rsquo;s next question before introducing the next call-to-action:</p>
+            <div class="role-chips">
+              <span class="role-chip">First Impression</span>
+              <span class="dd-badge-icon"><img src="images/icons/expand-right-double-dark.svg" alt=""></span>
+              <span class="role-chip">Credibility</span>
+              <span class="dd-badge-icon"><img src="images/icons/expand-right-double-dark.svg" alt=""></span>
+              <span class="role-chip">Programs</span>
+              <span class="dd-badge-icon"><img src="images/icons/expand-right-double-dark.svg" alt=""></span>
+              <span class="role-chip">Social Proof</span>
+              <span class="dd-badge-icon"><img src="images/icons/expand-right-double-dark.svg" alt=""></span>
+              <span class="role-chip">Values</span>
+              <span class="dd-badge-icon"><img src="images/icons/expand-right-double-dark.svg" alt=""></span>
+              <span class="role-chip">Contact</span>
+            </div>
+            <p class="role-text role-text--regular role-text--spaced">This creates a natural progression that minimizes hesitation and encourages users to take action.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="role-row">
+        <div class="role-col">
+          <h2 class="role-col-title">Key Contributions</h2>
+          <div class="role-col-body">
+            <div class="role-sub-block">
+              <h3 class="role-subhead">Information Architecture</h3>
+              <p class="role-text role-text--regular">Structured the landing page to support decision-making instead of simply presenting content.</p>
+              <p class="role-text role-text--regular">The experience progressively introduces the trainer, certifications, training programs, testimonials, and contact information in an order that builds confidence over time.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="role-col">
+          <h2 class="role-col-title">Personal Branding</h2>
+          <div class="role-col-body">
+            <p class="role-text role-text--regular">Developed a visual identity that reflects energy, discipline, and professionalism.</p>
+            <p class="role-text role-text--regular">The bold typography, strong contrast, and dynamic imagery reinforce the trainer&rsquo;s personality while making the brand instantly recognizable.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== DEEP DIVE ===== -->
+  <section class="deep-dive">
+
+    <!-- Блок 1 -->
+    <div class="dd-block">
+      <div class="dd-row">
+        <div class="dd-col">
+          <h2 class="dd-title">Visual Storytelling</h2>
+          <div class="dd-col-body">
+            <p class="dd-body2">Used photography as the primary storytelling element.</p>
+            <p class="dd-body2">Rather than relying on lengthy descriptions, the page demonstrates expertise through real imagery, training environments, transformation-focused messaging, and an authentic personal presence.</p>
+          </div>
+        </div>
+
+        <div class="dd-col">
+          <h2 class="dd-title">Conversion-Focused UX</h2>
+          <div class="dd-col-body">
+            <p class="dd-body2">Designed every section around reducing friction and increasing user confidence.</p>
+            <p class="dd-body">Key conversion elements include:</p>
+            <div class="role-chips dd-gap-8">
+              <span class="role-chip">Strong hero section</span>
+              <span class="role-chip">Visible primary CTAs</span>
+              <span class="role-chip">Trust indicators</span>
+              <span class="role-chip">Certification badges</span>
+              <span class="role-chip">Program highlights</span>
+              <span class="role-chip">Client testimonials</span>
+              <span class="role-chip">Contact form</span>
+            </div>
+            <p class="dd-body2 dd-gap-16">Each component works together to guide visitors toward taking action.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Блок 2 -->
+    <div class="dd-block">
+      <div class="dd-row">
+        <div class="dd-col">
+          <h2 class="dd-title">Design System</h2>
+          <div class="dd-col-body">
+            <h3 class="dd-title2 dd-gap-8">Created a reusable component library including:</h3>
+            <div class="role-chips dd-gap-8">
+              <span class="role-chip">Hero layouts</span>
+              <span class="role-chip">CTA buttons</span>
+              <span class="role-chip">Program cards</span>
+              <span class="role-chip">Testimonial blocks</span>
+              <span class="role-chip">Statistics</span>
+              <span class="role-chip">Certification modules</span>
+              <span class="role-chip">Gallery layouts</span>
+              <span class="role-chip">Contact forms</span>
+            </div>
+            <p class="dd-body2 dd-gap-16">This makes future campaign pages easy to build while keeping the visual identity consistent.</p>
+          </div>
+        </div>
+
+        <div class="dd-col">
+          <h2 class="dd-title">Process</h2>
+          <div class="dd-col-body">
+            <div class="dd-badges dd-gap-16">
+              <span class="dd-badge">Research</span>
+              <span class="dd-badge-icon"><img src="images/icons/expand-right-double.svg" alt=""></span>
+              <span class="dd-badge">Competitor Analysis</span>
+              <span class="dd-badge-icon"><img src="images/icons/expand-right-double.svg" alt=""></span>
+              <span class="dd-badge">Content Planning</span>
+              <span class="dd-badge-icon"><img src="images/icons/expand-right-double.svg" alt=""></span>
+              <span class="dd-badge">Information Architecture</span>
+              <span class="dd-badge-icon"><img src="images/icons/expand-right-double.svg" alt=""></span>
+              <span class="dd-badge">Wireframes</span>
+              <span class="dd-badge-icon"><img src="images/icons/expand-right-double.svg" alt=""></span>
+              <span class="dd-badge">Visual Design</span>
+              <span class="dd-badge-icon"><img src="images/icons/expand-right-double.svg" alt=""></span>
+              <span class="dd-badge">Responsive Optimization</span>
+              <span class="dd-badge-icon"><img src="images/icons/expand-right-double.svg" alt=""></span>
+              <span class="dd-badge">Developer Handoff</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===== FINAL (пятая секция) ===== -->
+    <section class="role-frame">
+    <div class="role-panel">
+      <div class="final-row">
+        <div class="final-col">
+          <h2 class="final-title">Results</h2>
+          <div class="role-chips" style="margin-top: 24px;">
+            <span class="role-chip role-chip--check"><img src="images/icons/check.svg" alt="">Built a landing page optimized for client acquisition</span>
+            <span class="role-chip role-chip--check"><img src="images/icons/check.svg" alt="">Established a strong and memorable personal brand</span>
+            <span class="role-chip role-chip--check"><img src="images/icons/check.svg" alt="">Improved content clarity through a structured conversion journey</span>
+            <span class="role-chip role-chip--check"><img src="images/icons/check.svg" alt="">Increased trust using certifications, testimonials, and real imagery</span>
+            <span class="role-chip role-chip--check"><img src="images/icons/check.svg" alt="">Delivered a scalable design system for future marketing materials</span>
+          </div>
+        </div>
+
+        <div class="final-col">
+          <h2 class="final-title">What I Learned</h2>
+          <p class="final-subtitle">Designing for personal brands is fundamentally different from designing for software products.</p>
+          <p class="final-subtitle">Users aren&rsquo;t evaluating features&mdash;they&rsquo;re evaluating a person.</p>
+          <p class="final-subtitle">Every visual decision, content block, and interaction contributes to one question:</p>
+          <p class="final-subtitle">&ldquo;Would I trust this person enough to work with them?&rdquo;</p>
+          <p class="final-subtitle">Building that trust through thoughtful UX, visual hierarchy, and storytelling is what turns a landing page into a conversion tool.</p>
+        </div>
+      </div>
+
+      <div class="final-btn-wrap">
+        <a href="https://www.upwork.com/freelancers/dmytrochornohor" target="_blank" rel="noopener" class="final-btn">Hire Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CASES (шестая секция) ===== -->
+  <section class="cases-section">
+    <div class="cases-row">
+
+      <div class="case-card">
+        <div class="case-card-image">
+          <img src="images/cases/case-web-1.webp" alt="Case preview">
+        </div>
+        <div class="case-card-chips">
+          <span class="case-card-chip">Product Positioning</span>
+          <span class="case-card-chip">Cybersecurity</span>
+          <span class="case-card-chip">B2B Enterprise SaaS</span>
+          <span class="case-card-chip">B2B Enterprise SaaS</span>
+          <span class="case-card-chip">Information Architecture</span>
+        </div>
+        <p class="case-card-title">Marketing Website for a Runtime Application Security Platform</p>
+        <div class="case-card-btn-wrap">
+          <a href="website.html" class="case-card-btn">Discover Case</a>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-card-image">
+          <img src="images/cases/case-web-3.webp" alt="Case preview">
+        </div>
+        <div class="case-card-chips">
+          <span class="case-card-chip case-card-chip--blue">AI Experience</span>
+          <span class="case-card-chip case-card-chip--blue">Product Strategy</span>
+          <span class="case-card-chip case-card-chip--blue">UX/UI Design</span>
+          <span class="case-card-chip case-card-chip--blue">Mobile Design</span>
+          <span class="case-card-chip case-card-chip--blue">Learning Experience</span>
+        </div>
+        <p class="case-card-title">Reimagining Bible Study as an AI Conversation</p>
+        <div class="case-card-btn-wrap">
+          <a href="mobile-app.html" class="case-card-btn case-card-btn--blue">Discover Case</a>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-card-image">
+          <img src="images/cases/case-web-4.webp" alt="Case preview">
+        </div>
+        <div class="case-card-chips">
+          <span class="case-card-chip">Product Strategy</span>
+          <span class="case-card-chip">UX/UI Design</span>
+          <span class="case-card-chip">Data Visualization</span>
+          <span class="case-card-chip">Design System</span>
+          <span class="case-card-chip">Web3 Direction</span>
+        </div>
+        <p class="case-card-title">Turning Blockchain Data Into Product Intelligence</p>
+        <div class="case-card-btn-wrap">
+          <a href="web-app.html" class="case-card-btn case-card-btn--pink">Discover Case</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== BOTTOM BAR ===== -->
+  <div class="bottom-bar">
+    <span class="bottom-bar-credit">Design &amp; Develop by <a href="https://t.me/sublom" target="_blank" rel="noopener" class="bottom-bar-name">Dmytro Chornohor</a></span>
+    <span class="bottom-bar-year">&copy;2026</span>
+  </div>
+
+  <script src="js/smooth-scroll.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/side-menu-toggle.js"></script>
+  <script src="js/music-player.js"></script>
+
+</body>
+</html>
