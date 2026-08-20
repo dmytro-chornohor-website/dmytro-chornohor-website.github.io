@@ -85,14 +85,29 @@
         }
 
         if (autoplay) {
-          // Автоплей со звуком браузеры могут заблокировать, пока
-          // пользователь ни разу не взаимодействовал с сайтом — это
-          // стандартная политика браузеров, а не ошибка плеера. Как
-          // только пользователь один раз нажмёт play (или кликнет
-          // куда-либо на странице), дальнейшие переходы уже будут
-          // продолжать играть автоматически.
-          audio.play().catch(() => {});
+          // Автоплей со звуком браузеры блокируют, пока пользователь ни разу
+          // не взаимодействовал со страницей. Если play() отклонён, ставим
+          // обработчик первого клика/тапа/нажатия клавиши где угодно на
+          // странице, который повторит попытку — тогда музыка начнётся сразу
+          // по первому взаимодействию, а не только по клику на саму кнопку.
+          audio.play().catch(() => {
+            armFirstInteractionAutoplay();
+          });
         }
+      }
+
+      function armFirstInteractionAutoplay() {
+        const tryPlay = () => {
+          if (wantsPlaying && audio.paused) {
+            audio.play().catch(() => {});
+          }
+          document.removeEventListener('click', tryPlay);
+          document.removeEventListener('touchstart', tryPlay);
+          document.removeEventListener('keydown', tryPlay);
+        };
+        document.addEventListener('click', tryPlay);
+        document.addEventListener('touchstart', tryPlay);
+        document.addEventListener('keydown', tryPlay);
       }
 
       function updatePlayIcon(isPlaying) {
